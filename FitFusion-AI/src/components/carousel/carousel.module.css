@@ -1,0 +1,141 @@
+/* Carousel.module.css */
+.carousel {
+    position: relative;
+    height: 600px;
+    width: 100%;
+    overflow: hidden;
+    margin-top: 80px; /* Adjust based on header height */
+  }
+  
+  .slide {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.8s ease-in-out;
+    z-index: 1;
+  }
+  
+  .slide.active {
+    opacity: 1;
+    z-index: 2;
+  }
+  
+  .backdropFilter {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.5); /* Dark overlay */
+    backdrop-filter: blur(2px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .content {
+    max-width: 800px;
+    padding: 2rem;
+    text-align: center;
+    color: white;
+  }
+  
+  .title {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+    font-weight: 700;
+  }
+  
+  .description {
+    font-size: 1.2rem;
+    margin-bottom: 2rem;
+  }
+  
+  .buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    margin-top: 2rem;
+  }
+  
+  .contactBtn, .registerBtn {
+    padding: 0.8rem 1.5rem;
+    font-size: 1rem;
+    font-weight: 600;
+    border-radius: 4px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+  }
+  
+  .contactBtn {
+    background-color: transparent;
+    color: white;
+    border: 2px solid white;
+  }
+  
+  .contactBtn:hover {
+    background-color: white;
+    color: rgb(35, 36, 41);
+  }
+  
+  .registerBtn {
+    background-color: #fb5b21;
+    color: white;
+    border: 2px solid #fb5b21;
+  }
+  
+  .registerBtn:hover {
+    background-color: white;
+    color: #fb5b21;
+    border-color: white;
+  }
+  
+  .dots {
+    position: absolute;
+    bottom: 2rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 0.75rem;
+    z-index: 3;
+  }
+  
+  .dot {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .dot.active {
+    background-color: #fb5b21;
+    transform: scale(1.2);
+  }
+  
+  /* Responsive Styles */
+  @media (max-width: 768px) {
+    .carousel {
+      height: 450px;
+    }
+    
+    .title {
+      font-size: 2rem;
+    }
+    
+    .description {
+      font-size: 1rem;
+    }
+    
+    .buttons {
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+  }
