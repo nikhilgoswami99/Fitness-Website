@@ -33,37 +33,45 @@ function Navabr() {
           <nav className={`${styles.nav} ${isMenuOpen ? styles.active : ""}`}>
             <ul className={styles.navList}>
               <li className={styles.navItem}>
-                <a href="/" className={styles.navLink}>
+                <Link to="/" className={styles.navLink}>
                   Home
-                </a>
+                </Link>
               </li>
               <li className={styles.navItem}>
-                <a href="/about" className={styles.navLink}>
+                <Link to="/about" className={styles.navLink}>
                   About
-                </a>
+                </Link>
               </li>
               <li className={styles.navItem}>
-                <a href="/services" className={styles.navLink}>
+                <Link to="/services" className={styles.navLink}>
                   Services
-                </a>
+                </Link>
               </li>
               <li className={styles.navItem}>
-                <a href="/contact" className={styles.navLink}>
+                <Link to="/contact" className={styles.navLink}>
                   Contact
-                </a>
+                </Link>
               </li>
               <li className={styles.navItem}>
-                <a href="/ai-trainer" className={styles.navLink}>
+                <Link to="/ai-trainer" className={styles.navLink}>
                   AI Trainer
-                </a>
+                </Link>
               </li>
               <li className={styles.navItem}>
-                <a
-                  href="/login"
+                <Link
+                  to="/signUp"
                   className={`${styles.navLink} ${styles.navLinkHighlight}`}
                 >
-                  Register/Sign In
-                </a>
+                  Register
+                </Link>
+              </li>
+              <li className={styles.navItem}>
+                <Link
+                  to="/signIn"
+                  className={`${styles.navLink} ${styles.navLinkHighlight}`}
+                >
+                  Sign In
+                </Link>
               </li>
             </ul>
           </nav>

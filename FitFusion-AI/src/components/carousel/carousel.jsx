@@ -1,23 +1,28 @@
 import React, { useEffect, useState } from 'react'
 import styles from './carousel.module.css'
 
+import img1 from '../../assets/carousel-1.jpg'
+import img2 from '../../assets/carousel-2.jpg'
+import img3 from '../../assets/carousel-3.png'
+
+
 function Carousel() {
 
     const [currentSlide, setCurrentSlide] = useState(0);
   
   const slides = [
     {
-      image: "/api/placeholder/1200/600",
+      image: img1,
       title: "Transform Your Fitness Journey",
       description: "Personalized workouts powered by AI technology"
     },
     {
-      image: "/api/placeholder/1200/600",
+      image: img2,
       title: "Achieve Your Goals Faster",
       description: "Smart training programs adapted to your progress"
     },
     {
-      image: "/api/placeholder/1200/600",
+      image: img3,
       title: "Train Smarter, Not Harder",
       description: "Get real-time feedback and advanced analytics"
     }
@@ -26,7 +31,7 @@ function Carousel() {
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrentSlide((prevSlide) => (prevSlide + 1) % slides.length);
-    }, 2000);
+    }, 5000);
     
     return () => clearInterval(interval);
   }, [slides.length]);

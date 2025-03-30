@@ -27,15 +27,9 @@
   
   .logoText {
     font-size: 1.8rem;
-    font-weight: 700;
-    margin: 0;
-    color: white;
-    cursor: pointer;
-    transition: color 0.3s ease;
-  }
-  
-  .logoText:hover {
+    font-weight: bold;
     color: #fb5b21;
+    cursor: pointer;
   }
   
   .navList {
@@ -54,29 +48,30 @@
   .navLink {
     color: white;
     text-decoration: none;
-    font-size: 1rem;
-    font-weight: 500;
+    font-size: 1.2rem;
     padding: 0.5rem 0;
     position: relative;
-    transition: color 0.3s ease;
+    transition: color 1s ease;
+    font-weight: bold;
   }
   
   .navLink:hover {
     color: #fb5b21;
   }
   
-  .navLink::after {
+  .navLink::before {
     content: '';
     position: absolute;
     bottom: 0;
     left: 0;
     width: 0;
-    height: 2px;
+    height: 5px;
+    border-radius: 5px;
     background-color: #fb5b21;
     transition: width 0.3s ease;
   }
   
-  .navLink:hover::after {
+  .navLink:hover::before {
     width: 100%;
   }
   
@@ -85,11 +80,10 @@
     color: white;
     padding: 0.5rem 1rem;
     border-radius: 4px;
-    transition: all 0.3s ease;
+    transition: color 1s ease;
   }
   
   .navLinkHighlight:hover {
-    /* background-color: white; */
     color: #000000;
   }
   
