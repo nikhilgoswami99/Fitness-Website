@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const bcrypt = require('bcryptjs');
 
 const userSchemaObject = {
     name: {
@@ -41,6 +42,21 @@ const userSchemaObject = {
   }
 
   const userSchema = new mongoose.Schema(userSchemaObject, {timestamps: true});
+
+  // MongoDB hook
+  userSchema.pre("save", async function () {
+    try {
+        const salt = await bcrypt.genSalt(10); // Extra added security on top of your password hash
+        const cipherTextPassword = await bcrypt.hash(this.password, salt);
+        this.password = cipherTextPassword;
+    } catch (err) {
+        console.log("ERROR WHILE HASINHG PASSWORD", err)
+    }
+});
+
+  
+
+
 
   const userModel = mongoose.model("users", userSchema);
 

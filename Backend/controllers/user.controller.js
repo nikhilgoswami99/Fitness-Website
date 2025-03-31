@@ -1,17 +1,10 @@
 const userModel = require('../models/user.model');
 
 
-
 const register = async (req, res, next) => {
   try {
 
-    const data = {
-        name: 'Nikhil Goswami',
-        email: 'nikhil.goswami.18121999@gmail.com',
-        password: 'nikhil@goswami'
-    }
-
-    await userModel.create(data);
+    await userModel.create(req.body);
 
     res.send({
         success: true,
@@ -19,6 +12,11 @@ const register = async (req, res, next) => {
     })
     
   } catch (error) {
+
+    res.status(409).send({
+            success: false,
+        message: 'User with this email already exists'
+    });
 
     console.log(error);
     

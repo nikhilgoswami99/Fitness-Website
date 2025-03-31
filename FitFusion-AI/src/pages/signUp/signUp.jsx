@@ -23,7 +23,7 @@ const SignUp = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Form validation and submission logic would go here
+    // Form validation and submission logic is here
     console.log('Form submitted:', formData);
   };
 

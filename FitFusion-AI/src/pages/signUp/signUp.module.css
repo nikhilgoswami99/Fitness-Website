@@ -8,9 +8,11 @@
   justify-content: center;
 }
 
+
+
 .contentWrapper {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1000px;
   display: flex;
   background-color: white;
   border-radius: 10px;
