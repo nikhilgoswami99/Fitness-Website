@@ -1,5 +1,5 @@
-const mongoose = require('mongoose');
-const bcrypt = require('bcryptjs');
+const mongoose = require("mongoose");
+const bcrypt = require("bcryptjs");
 
 const userSchemaObject = {
     name: {
@@ -23,6 +23,12 @@ const userSchemaObject = {
       type: String,
       enum: ['user', 'admin'],
       default: 'user',
+    },
+
+    profile_Picture: {
+      type: String,
+      required: true,
+      default: "https://cdn-icons-png.flaticon.com/512/3135/3135715.png"
     },
     phone: {
       type: String,
