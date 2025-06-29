@@ -1,0 +1,79 @@
+.dietPage {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+    padding: 1rem;
+    gap: 2rem;
+}
+
+.heading {
+    color: white;
+}
+
+.dietPlans {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.plan {
+    position: relative;
+    padding: 1rem;
+    background-color: rgb(38, 39, 59);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1.5rem;
+    width: 50%;
+}
+
+.calories {
+    color: white;
+    font-size: 2rem;
+
+}
+
+.units {
+    color: rgb(136, 136, 156);
+    font-size: 1.5rem;
+}
+
+.planImages {
+    height: 6rem;
+    width: 6rem
+}
+
+.foodItems {
+    font-size: 1.5rem;
+    color: #88889c;
+}
+
+.mealName {
+    color: white;
+}
+
+.plan div {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.editBtn {
+    color: #88889c;
+    cursor: pointer;
+}
+
+
+.calorieChart {
+    background-color: rgb(38, 39, 59);
+    color: white;
+    padding: 1rem;
+    border-radius: 10px;
+    width: 50%;
+}
+

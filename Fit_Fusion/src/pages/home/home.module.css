@@ -1,0 +1,103 @@
+.homePage {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.mainContent {
+    width: 70vw;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 2rem;
+    padding: 2rem;
+}
+
+.myActivity {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.heading {
+    color: white;
+}
+
+.activityContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+}
+
+.activityCard {
+    background-color: chocolate;
+    height: 13rem;
+    width: 25%;
+    border-radius: 20px;
+}
+
+.workoutSection {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.createNewBtn {
+    padding: 0.5rem;
+    cursor: pointer;
+    background-color: rgb(51, 134, 238);
+    border: none;
+    border-radius: 10px;
+    color: white;
+    font-size: large;
+}
+
+.exercises {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    background-color: rgb(38, 39, 59);
+    padding: 1rem;
+    border-radius: 10px;
+}
+
+.cardContainer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    width: 100%;
+}
+
+.profileSection {
+    width: 30vw;
+    padding: 20rem 5rem;
+    background-color: rgb(38, 39, 59);
+    border-radius: 10px;
+}
+
+.activityTracking {
+    margin: 0 2rem 2rem 2rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.chartContainer {
+    background-color: rgb(38, 39, 59);
+    padding: 14rem 10rem;
+    border-radius: 10px;
+    width: 100%;
+}

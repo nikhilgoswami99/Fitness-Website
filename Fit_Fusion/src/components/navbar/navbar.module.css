@@ -1,0 +1,44 @@
+.navbar {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    justify-self: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+    background-color: rgb(38, 39, 59);
+    position: sticky;
+    top: 2rem;
+    z-index: 10;
+    width: 40%;
+    border-radius: 10px;
+}
+
+.navLinks {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    font-size: 1.2rem;
+}
+
+.links {
+    cursor: pointer;
+    color: white;
+    list-style: none;
+    text-decoration: none;
+}
+
+.navbarImage {
+    height: auto;
+    width: 8rem;
+    cursor: pointer;
+}
+
+.signOut {
+    padding: 0.5rem;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: var(--col1);
+}

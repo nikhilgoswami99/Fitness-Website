@@ -1,0 +1,57 @@
+.workoutsHeading {
+    -webkit-text-stroke: 2px var(--col1);
+    font-size: 8rem;
+    font-weight: bold;
+    text-align: center;
+    color: transparent;
+}
+
+.mySwiper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 90vw;
+    margin: 2rem 0 ;
+}
+
+
+
+.swiperSlide {
+  width: 200px;
+  height: 200px;
+  border-radius: 10px;
+  border: 1px solid #e6e6e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-size: cover;
+  background-position: center;
+  cursor: pointer;
+}
+
+.swiperSlideContent {
+  background-color: rgba(0, 0, 0, 0.385);
+  position: relative;
+  top: 0;
+  left: 0;
+  color: white;
+  width: 100%;
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.swiperSlideContent h2 {
+  font-size: 1.5rem;
+  font-weight: 900;
+  text-align: center;
+}
+
+.swiperSlideContent p {
+  font-size: 1rem;
+  font-weight: 500;
+  text-align: center;
+}
+

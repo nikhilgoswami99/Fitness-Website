@@ -1,0 +1,13 @@
+.card {
+    background-color: rgb(56, 65, 82);
+    border-radius: 10px;
+    height: 10rem;
+    width: 20%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.heading {
+    color: white;
+}
