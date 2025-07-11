@@ -1,10 +1,14 @@
 import React from 'react'
 import styles from './card.module.css'
 
-function Card() {
+function Card(props) {
+  
   return (
     <div className={styles.card}>
-      <h1 className={styles.heading}>card</h1>
+      <img className={styles.cardImg} src={props.obj.imageUrl} alt="" />
+      <div>
+        <h2 className={styles.heading}>{props.obj.type}</h2>
+      </div>
     </div>
   )
 }

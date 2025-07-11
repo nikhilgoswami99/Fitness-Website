@@ -4,8 +4,12 @@
     box-sizing: border-box;
 }
 
-:root {
-    --col1: #ffc20e;
+button:active {
+    transform:scale(0.95);
+}
+
+button {
+    cursor: pointer;
 }
 
 body {

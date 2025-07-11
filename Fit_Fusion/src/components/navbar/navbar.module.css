@@ -7,11 +7,13 @@
     flex-wrap: wrap;
     gap: 2rem;
     background-color: rgb(38, 39, 59);
-    position: sticky;
-    top: 2rem;
+    position: static;
+    top: 0;
+    margin-top: 2rem;
     z-index: 10;
     width: 40%;
     border-radius: 10px;
+    border: 1px rgb(56, 65, 82) solid;
 }
 
 .navLinks {
@@ -19,7 +21,7 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 2rem;
+    gap: 1rem;
     font-size: 1.2rem;
 }
 
@@ -28,6 +30,16 @@
     color: white;
     list-style: none;
     text-decoration: none;
+    padding: 0.5rem;
+    border-radius: 10px;
+}
+
+.link:hover {
+     background-color: rgb(56, 65, 82);
+}
+
+.bgColor {
+    background-color: rgb(53, 135, 237);
 }
 
 .navbarImage {
@@ -38,7 +50,11 @@
 
 .signOut {
     padding: 0.5rem;
-    border-radius: 5px;
+    color: white;
+    border: none;
+    font-size: medium;
+    font-weight: bold;
+    border-radius: 10px;
     cursor: pointer;
-    background-color: var(--col1);
+     background-color: rgb(53, 135, 237);
 }

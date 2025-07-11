@@ -1,20 +1,41 @@
-import styles from './navbar.module.css'
-import logo from '../../assets/logo.png'
+import styles from "./navbar.module.css";
+import logo from "../../assets/logo.png";
 
-import {Link} from 'react-router-dom'
+import { NavLink } from "react-router-dom";
 
 function Navbar() {
   return (
     <nav className={styles.navbar}>
       <img className={styles.navbarImage} src={logo} alt="navbarLogo" />
       <ul className={styles.navLinks}>
-        <Link className={styles.links} to={'/'}>Home</Link>
-        <Link className={styles.links} to={'diet'}>Diet</Link>
-        <li className={styles.links}>Profile</li>
+        <NavLink
+          className={({ isActive }) =>`${styles.links}
+            ${isActive ? styles.bgColor : styles.link}`
+          }
+          to={"/"}
+        >
+          Home
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>`${styles.links}
+            ${isActive ? styles.bgColor : styles.link}`
+          }
+          to={"diet"}
+        >
+          Diet
+        </NavLink>
+        <NavLink
+          className={({ isActive }) =>`${styles.links}
+            ${isActive ? styles.bgColor : styles.link}`
+          }
+          to={"profile"}
+        >
+          Profile
+        </NavLink>
       </ul>
       <button className={styles.signOut}>Sign Out</button>
     </nav>
-  )
+  );
 }
 
-export default Navbar
+export default Navbar;

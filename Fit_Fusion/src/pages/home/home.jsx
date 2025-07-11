@@ -1,6 +1,9 @@
 import Card from "../../components/bodyPartCard/card";
 import styles from "./home.module.css";
 
+import workoutTypes from '../../../public/exerciseTypes'
+import Chart from '../../components/workoutChart/chart'
+
 function Home() {
   const cardColors = [
     "rgb(51, 134, 238)",
@@ -18,45 +21,46 @@ function Home() {
               <div
                 style={{ backgroundColor: `${cardColors[0]}` }}
                 className={styles.activityCard}
-              ></div>
+              >
+                <p className={styles.goalCompleted}>12</p>
+                <p>Workouts</p>
+                <p>Target: 15</p>
+              </div>
               <div
                 style={{ backgroundColor: `${cardColors[1]}` }}
                 className={styles.activityCard}
-              ></div>
+              >
+                <p className={styles.goalCompleted}>12</p>
+                <p>Workouts</p>
+                <p>Target: 15</p>
+              </div>
               <div
                 style={{ backgroundColor: `${cardColors[2]}` }}
                 className={styles.activityCard}
-              ></div>
+              >
+                <p className={styles.goalCompleted}>12</p>
+                <p>Workouts</p>
+                <p>Target: 15</p>
+              </div>
               <div
                 style={{ backgroundColor: `${cardColors[3]}` }}
                 className={styles.activityCard}
-              ></div>
+              >
+                <p className={styles.goalCompleted}>12</p>
+                <p>Workouts</p>
+                <p>Target: 15</p>
+              </div>
             </div>
           </div>
 
           <div className={styles.workoutSection}>
-            <div
-              style={{
-                display: "flex",
-                alignItems: "center",
-                justifyContent: "space-between",
-              }}
-            >
-              <h2 className={styles.heading}>Create Workout Plan</h2>
-              <button className={styles.createNewBtn}>+ New Plan</button>
-            </div>
 
             <div className={styles.exercises}>
-              <h3 className={styles.heading}>Explore Exercises</h3>
+              <h2 className={styles.heading}>Explore Exercises</h2>
               <div className={styles.cardContainer}>
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
-                <Card />
+              {workoutTypes.map((obj, idx) => {
+                return <Card key={idx} obj={obj}/>
+              })}
               </div>
             </div>
           </div>
@@ -64,7 +68,7 @@ function Home() {
         <div className={styles.profileSection}></div>
       </section>
 
-      {/* fdfddfdf */}
+
 
       <div className={styles.activityTracking}>
         <div
@@ -76,9 +80,9 @@ function Home() {
         >
           <h2 className={styles.heading}>Activity Statistics</h2>
         </div>
-         <div className={styles.chartContainer}>
-            
-          </div>
+        <div className={styles.chartContainer}>
+        <Chart/>
+        </div>
       </div>
     </>
   );

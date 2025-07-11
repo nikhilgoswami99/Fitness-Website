@@ -1,0 +1,279 @@
+.profilePage {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1rem;
+}
+
+.userName {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(38, 39, 59);
+  border-radius: 10px;
+  border: 1px solid rgb(56, 65, 82);
+  width: 70%;
+  height: 15rem;
+  gap: 1rem;
+}
+
+.name {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+.name p {
+  font-size: 2rem;
+  color: white;
+}
+
+.profilePicture {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  flex-wrap: wrap;
+  border-radius: 50%;
+  width: 10rem;
+  height: 10rem;
+  overflow: hidden;
+}
+
+.chooseFile {
+  position: absolute;
+  top: 10.5rem;
+  left: 2.5rem;
+  z-index: 10;
+}
+
+.profilePicture img {
+  height: auto;
+  width: 100%;
+  object-fit: cover;
+}
+
+.changeImgBtn {
+  position: absolute;
+  top: 11.22rem;
+  right: 31.4rem;
+  background-color: rgb(51, 138, 239);
+  border: none;
+  font-size: 1.5rem;
+  color: white;
+  border-radius: 50%;
+  cursor: pointer;
+  height: 2rem;
+  width: 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.editBtn {
+  color: white;
+  background-color: rgb(51, 138, 239);
+  border-radius: 10px;
+  padding: 0.5rem;
+  border: none;
+  font-weight: bold;
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 2rem;
+  padding-top: 2rem;
+  width: 70%;
+}
+
+@media (min-width: 1024px) {
+  .container {
+    flex-direction: row;
+  }
+}
+
+.card {
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgb(38, 39, 59);
+  border-radius: 10px;
+  border: 1px solid rgb(56, 65, 82);
+  width: 50%;
+}
+
+.cardTitle {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: bold;
+  text-align: left;
+  width: 100%;
+  margin-bottom: 1rem;
+}
+
+.infoList {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
+
+.infoItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid transparent;
+  transition: all 0.2s ease;
+  width: 100%;
+}
+
+/* .infoItem:hover {
+  border-bottom-color: #475569;
+  background-color: rgba(51, 65, 85, 0.3);
+  margin: 0 -8px;
+  padding: 8px 8px;
+  border-radius: 6px;
+} */
+
+.infoLabel {
+  color: rgb(136, 136, 156);
+  font-size: 1.3rem;
+}
+
+.infoValue {
+  color: white;
+  font-size: 1.3rem;
+}
+
+.goalBadge {
+  /* background-color: rgb(54, 139, 236); */
+  color: #ffffff;
+  /* padding: 0.5rem; */
+  border-radius: 20px;
+  font-size: 1.3rem;
+}
+
+
+/* Responsive improvements */
+@media (max-width: 640px) {
+  .container {
+    padding: 16px;
+    gap: 16px;
+  }
+
+  .card {
+    padding: 20px;
+  }
+
+  .cardTitle {
+    font-size: 18px;
+    margin-bottom: 20px;
+  }
+
+  .infoItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 4px;
+  }
+
+  .infoValue,
+  .goalBadge {
+    align-self: flex-end;
+  }
+}
+
+
+
+/* My plans section styling */
+
+
+.myPlans {
+  padding: 2rem;
+  background-color: rgb(38, 39, 59);
+  border: 1px solid rgb(56, 65, 82);
+  border-radius: 10px;
+  margin-top: 2rem;
+  width: 70%;
+}
+
+.planHeading {
+  font-size: 1.5rem;
+  color: #ffffff;
+  margin-bottom: 1.5rem;
+}
+
+.planCard {
+  background: linear-gradient(135deg, #2251d0, #338aef);
+  padding: 2em;
+  border-radius: 0.8rem;
+  max-width: 20rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+.planHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.title {
+  color: #ffffff;
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.status {
+  background-color: #2ecc71;
+  color: white;
+  padding: 0.3em 0.8em;
+  border-radius: 1em;
+  font-size: 0.8rem;
+}
+
+.description {
+  color: #e0e0e0;
+  font-size: 0.9rem;
+}
+
+.progressInfo {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.9rem;
+  color: #ffffff;
+}
+
+.progressBar {
+  background-color: #2e3a59;
+  border-radius: 1em;
+  height: 0.6em;
+  overflow: hidden;
+}
+
+.progressFill {
+  background-color: #4c9aff;
+  height: 100%;
+  width: 68%;
+}
+
+.continueBtn {
+  background-color: #ffffff;
+  font-size: 1rem;
+  padding: 0.6em 1em;
+  border: none;
+  border-radius: 0.5em;
+  cursor: pointer;
+}

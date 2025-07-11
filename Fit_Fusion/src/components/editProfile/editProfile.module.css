@@ -1,0 +1,51 @@
+.wrapper {
+  display: flex;
+  gap: 2rem;
+  padding-top: 2rem;
+  width: 70%;
+}
+
+.section {
+  background-color: rgb(38, 39, 59);
+  padding: 2rem;
+  border-radius: 10px;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(56, 65, 82);
+}
+
+.heading {
+  color: #ffffff;
+  font-size: 1.5rem;
+  text-align: left;
+  width: 100%;
+}
+
+.label {
+  color: rgb(136, 136, 156);
+  margin-top: 0.5rem;
+  font-size: 1.3rem;
+  display: block;
+}
+
+.input {
+  width: 100%;
+  padding: 0.8em;
+  background-color: rgb(56, 65, 82);
+  border: none;
+  border-radius: 0.4em;
+  color: white;
+  font-size: 1rem;
+}
+
+.inputBox {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  justify-content: center;
+  gap: 1rem;
+  width: 100%;
+}
