@@ -17,6 +17,8 @@
     align-items: center;
     justify-content: center;
     gap: 1rem;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 .plan {
@@ -29,7 +31,7 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 1.5rem;
-    width: 50%;
+    width: 20%;
     border: 1px solid rgb(56, 65, 82);
 }
 
@@ -52,6 +54,13 @@
 .foodItems {
     font-size: 1.5rem;
     color: #88889c;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.3rem;
+    word-wrap: break-word;
+    word-break: break-word;
+    text-align: center;
+    justify-content: center;
 }
 
 .mealName {
@@ -77,5 +86,23 @@
     border-radius: 10px;
     width: 50%;
     border: 1px solid rgb(56, 65, 82);
+}
+
+.deleteMenuBtn {
+  border: none;
+  padding: 0.2rem 0.3rem;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgb(194, 19, 19);
+  color: white;
+}
+
+.menuItem {
+  /* padding: 0.4rem 0.8rem; */
+  border-radius: 5px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
 }
 

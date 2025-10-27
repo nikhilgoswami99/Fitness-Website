@@ -1,0 +1,24 @@
+@import "../workouts/workouts.module.css";
+
+.emptyText {
+  text-align: center;
+  color: var(--text-gray);
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.3rem);
+  margin-top: 2rem;
+}
+
+.removeButton {
+  background-color: #dc2626;
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: clamp(0.4rem, 1vh, 0.6rem) clamp(0.8rem, 2vw, 1rem);
+  width: 100%;
+  cursor: pointer;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  transition: background-color 0.2s ease;
+}
+
+.removeButton:hover {
+  background-color: #b91c1c;
+}

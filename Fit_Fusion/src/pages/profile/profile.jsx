@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import styles from "./profile.module.css";
+import { replace, useNavigate } from "react-router-dom";
 
 import EditProfile from "../../components/editProfile/editProfile";
 
@@ -9,6 +10,8 @@ function Profile() {
   const [image, setImage] = useState(null);
   const [changeImg, setChangeImg] = useState(false);
   const [editProfile, setEditProfile] = useState(false);
+
+  const navigate = useNavigate();
 
   const personalInfo = {
     age: "28 years",
@@ -28,10 +31,12 @@ function Profile() {
     waterIntake: "3.50 liters",
   };
 
+  const handleSaveProfile = () => {
+    setEditProfile(false);
+  };
+
   const handleProfileEdit = () => {
-    setEditProfile((prev) => {
-      return !prev;
-    });
+    setEditProfile(true);
   };
 
   const handleImageChange = () => {
@@ -44,15 +49,27 @@ function Profile() {
     setChangeImg(false);
   };
 
+  let navigateToSavedWorkouts = () => {
+    navigate(`/savedWorkouts`);
+  };
+
   return (
     <div className={styles.profilePage}>
       {changeImg && (
-        <input
-          onChange={handleImage}
-          type="file"
-          className={styles.chooseFile}
-        />
+        <div className={styles.chooseImgPopUp}>
+          <label htmlFor="fileInput" className={styles.customFileBtn}>
+            Choose Image
+          </label>
+          <input
+            id="fileInput"
+            type="file"
+            className={styles.chooseFile}
+            onChange={handleImage}
+            accept="image/*"
+          />
+        </div>
       )}
+
       <div className={styles.userName}>
         <div className={styles.profilePicture}>
           <img
@@ -68,9 +85,16 @@ function Profile() {
         </button>
         <div className={styles.name}>
           <p>Nikhil Goswami</p>
-          <button onClick={handleProfileEdit} className={styles.editBtn}>
-            Edit Profile
-          </button>
+          <div className={styles.btnSection}>
+            <button onClick={handleProfileEdit} className={styles.editBtn}>
+              Edit Profile
+            </button>
+            {editProfile && (
+              <button onClick={handleSaveProfile} className={styles.saveBtn}>
+                Save Changes
+              </button>
+            )}
+          </div>
         </div>
       </div>
 
@@ -175,7 +199,12 @@ function Profile() {
           <div className={styles.progressBar}>
             <div className={styles.progressFill}></div>
           </div>
-          <button className={styles.continueBtn}>Continue Workout</button>
+          <button
+            onClick={navigateToSavedWorkouts}
+            className={styles.continueBtn}
+          >
+            View Workout Plan
+          </button>
         </div>
       </div>
     </div>

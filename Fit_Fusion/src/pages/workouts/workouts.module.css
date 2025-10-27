@@ -1,0 +1,120 @@
+:root {
+  --primary-bg: rgb(27, 28, 48);;
+  --card-bg: rgb(38, 39, 59);;
+  --accent-blue: #2563eb;
+  --accent-blue-dark: #1d4ed8;
+  --text-gray: #94a3b8;
+}
+
+.pageContainer {
+  background-color: var(--primary-bg);
+  color: #ffffff;
+  min-height: 100vh;
+  padding: clamp(1rem, 3vw, 3rem);
+  font-family: "Inter", sans-serif;
+}
+
+.title {
+  font-size: clamp(1.5rem, 2vw + 1rem, 2.5rem);
+  font-weight: 700;
+  margin-bottom: clamp(1.5rem, 2.5vw, 2.5rem);
+}
+
+.loading {
+  text-align: center;
+  color: #9ca3af;
+  font-size: clamp(1rem, 1vw + 0.5rem, 1.3rem);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(clamp(200px, 22vw, 280px), 1fr));
+  gap: clamp(1rem, 2vw, 2rem);
+}
+
+.card {
+  background-color: var(--card-bg);
+  border-radius: 1rem;
+  overflow: hidden;
+  text-align: center;
+  box-shadow: 0 0.3rem 0.6rem rgba(0, 0, 0, 0.25);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-0.3rem);
+  box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.3);
+}
+
+.image {
+  width: 100%;
+  height: clamp(160px, 25vh, 220px);
+  object-fit: cover;
+}
+
+.cardContent {
+  padding: clamp(0.8rem, 1.5vw, 1.2rem);
+}
+
+.exerciseName {
+  font-size: clamp(1rem, 1vw + 0.4rem, 1.3rem);
+  font-weight: 600;
+  margin-bottom: 0.3rem;
+  text-transform: capitalize;
+}
+
+.subText {
+  color: var(--text-gray);
+  font-size: clamp(0.8rem, 0.6vw + 0.4rem, 1rem);
+  margin-bottom: 0.8rem;
+  text-transform: capitalize;
+}
+
+.addButton {
+  background-color: var(--accent-blue);
+  color: #fff;
+  border: none;
+  border-radius: 0.6rem;
+  padding: clamp(0.4rem, 1vh, 0.6rem) clamp(0.8rem, 2vw, 1rem);
+  width: 100%;
+  cursor: pointer;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  transition: background-color 0.2s ease;
+}
+
+.addButton:hover {
+  background-color: var(--accent-blue-dark);
+}
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: clamp(1.5rem, 4vh, 3rem);
+  gap: clamp(0.8rem, 1vw, 1.5rem);
+}
+
+.pageButton {
+  background-color: rgb(56, 65, 82);
+  color: #fff;
+  border: none;
+  border-radius: 0.5rem;
+  padding: clamp(0.4rem, 1vh, 0.6rem) clamp(1rem, 2vw, 1.2rem);
+  cursor: pointer;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+  transition: background-color 0.2s ease;
+}
+
+.pageButton:hover {
+  background-color: #475569;
+}
+
+.pageButton:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.pageNum {
+  font-weight: 600;
+  font-size: clamp(0.9rem, 1vw, 1rem);
+}

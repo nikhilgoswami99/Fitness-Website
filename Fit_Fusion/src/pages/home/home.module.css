@@ -90,11 +90,141 @@
 
 .profileSection {
     width: 30vw;
-    padding: 20rem 5rem;
+    /* padding: 20rem 5rem; */
     background-color: rgb(38, 39, 59);
     border-radius: 10px;
     border: 1px rgb(56, 65, 82) solid;
 }
+
+.myCardWrapper {
+  padding: 1rem;
+  color: white;
+  width: 100%;
+}
+
+.myCardProfile {
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  gap: 3rem;
+}
+
+.myCardImage {
+  width: 5rem;
+  height: auto;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.myCardName {
+  font-size: 1.5rem;
+  font-weight: bold;
+}
+
+.myCardSubtitle {
+  font-size: 1.2rem;
+  color: #88889c;
+  margin-top: 0.2rem;
+}
+
+.myCardStats {
+  display: flex;
+  justify-content: space-around;
+  margin-top: 1.25rem;
+}
+
+.myCardStat {
+  text-align: center;
+}
+
+.myCardWeightLabel {
+  color: #ff784f;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.myCardHeightLabel {
+  color: #4faaff;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.myCardGoalLabel {
+  color: #3dd598;
+  font-size: 1.3rem;
+  margin: 0;
+}
+
+.myCardValue {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin: 0.3125rem 0 0;
+}
+
+
+.planContainer {
+  padding: 2rem 2.4rem 2.4rem 2.4rem;
+  max-width: 30rem;
+  color: #fff;
+}
+
+.header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+
+.title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  letter-spacing: 0.015em;
+}
+
+.status {
+  background-color: #0eb45f;
+  color: white;
+  font-size: 1.2rem;
+  border-radius: 1em;
+  padding: 0.3em 1em;
+  margin-left: 1.2em;
+}
+
+.planList {
+  margin-bottom: 2.2rem;
+}
+
+.planRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 1.1rem;
+  margin-bottom: 0.9em;
+}
+
+.planLabel {
+  font-weight: 500;
+  font-size: 1.5rem;
+}
+
+.planTime {
+  color: #88889c;
+  font-size: 1.5rem;
+}
+
+.fullPlanButton {
+  width: 100%;
+  padding: 0.9em 0;
+  background-color: rgb(51, 134, 238);
+  border: none;
+  border-radius: 0.45em;
+  color: #fff;
+  font-size: 1.1em;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+
+
 
 .activityTracking {
     margin: 0 2rem 2rem 2rem;

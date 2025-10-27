@@ -5,7 +5,9 @@ import App from "./App.jsx";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home/home.jsx";
 import Diet from "./pages/diet/diet.jsx";
-import Profile from './pages/profile/profile.jsx';
+import Profile from "./pages/profile/profile.jsx";
+import Workouts from "./pages/workouts/workouts.jsx";
+import SavedWorkouts from "./pages/savedWorkouts/savedWorkouts.jsx";
 
 const router = createBrowserRouter([
   {
@@ -23,6 +25,14 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
+      },
+      {
+        path: "workouts/:workoutType",
+        element: <Workouts />,
+      },
+      {
+        path: "savedWorkouts",
+        element: <SavedWorkouts />,
       },
     ],
   },
