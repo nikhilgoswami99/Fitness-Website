@@ -1,3 +1,4 @@
+/* Base styles (Desktop) */
 .profilePage {
   position: relative;
   display: flex;
@@ -19,6 +20,7 @@
   width: 70%;
   min-height: 15rem;
   gap: 1rem;
+  padding: 1rem;
 }
 
 .name {
@@ -73,7 +75,6 @@
   display: none;
 }
 
-
 .customFileBtn {
   padding: 0.5rem 1rem;
   background-color: #338aef;
@@ -95,7 +96,7 @@
   z-index: 100;
   height: 10rem;
   width: 30%;
-  background-color: rgba(38, 39, 59, 0.5);
+  background-color: rgba(38, 39, 59, 0.95);
   border-radius: 10px;
   border: 1px solid rgb(56, 65, 82);
   display: flex;
@@ -104,13 +105,14 @@
   backdrop-filter: blur(5px);
 }
 
-.saveBtn{
+.saveBtn {
   background-color: rgb(27, 28, 48);
   color: rgb(42, 194, 98);
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border: 1px solid rgb(42, 194, 98);
   font-weight: bold;
+  cursor: pointer;
 }
 
 .saveBtn:hover {
@@ -129,9 +131,10 @@
   color: white;
   background-color: rgb(51, 138, 239);
   border-radius: 5px;
-  padding: 0.5rem;
+  padding: 0.5rem 1rem;
   border: none;
   font-weight: bold;
+  cursor: pointer;
 }
 
 .container {
@@ -190,14 +193,6 @@
   width: 100%;
 }
 
-/* .infoItem:hover {
-  border-bottom-color: #475569;
-  background-color: rgba(51, 65, 85, 0.3);
-  margin: 0 -8px;
-  padding: 8px 8px;
-  border-radius: 6px;
-} */
-
 .infoLabel {
   color: rgb(136, 136, 156);
   font-size: 1.3rem;
@@ -216,40 +211,7 @@
   font-size: 1.3rem;
 }
 
-
-/* Responsive improvements */
-@media (max-width: 640px) {
-  .container {
-    padding: 16px;
-    gap: 16px;
-  }
-
-  .card {
-    padding: 20px;
-  }
-
-  .cardTitle {
-    font-size: 18px;
-    margin-bottom: 20px;
-  }
-
-  .infoItem {
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 4px;
-  }
-
-  .infoValue,
-  .goalBadge {
-    align-self: flex-end;
-  }
-}
-
-
-
 /* My plans section styling */
-
-
 .myPlans {
   padding: 2rem;
   background-color: rgb(38, 39, 59);
@@ -327,4 +289,433 @@
   border: none;
   border-radius: 0.5em;
   cursor: pointer;
+}
+
+/* ====================================== */
+/* RESPONSIVE STYLES */
+/* ====================================== */
+
+/* Tablet (Portrait and Landscape) - 768px to 1024px */
+@media (max-width: 1024px) {
+  .profilePage {
+    padding: 1rem;
+  }
+
+  .userName {
+    width: 85%;
+    min-height: 13rem;
+    padding: 1.5rem;
+  }
+
+  .profilePicture {
+    width: 9rem;
+    height: 9rem;
+  }
+
+  .changeImgBtn {
+    top: 10rem;
+    right: auto;
+    left: 50%;
+    transform: translateX(2rem);
+    font-size: 1.3rem;
+    height: 1.8rem;
+    width: 1.8rem;
+  }
+
+  .name p {
+    font-size: 1.8rem;
+  }
+
+  .chooseImgPopUp {
+    width: 40%;
+    height: 9rem;
+  }
+
+  .container {
+    width: 85%;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .card {
+    width: 48%;
+    padding: 1.8rem;
+    height: auto;
+    min-height: 50vh;
+  }
+
+  .cardTitle {
+    font-size: 1.4rem;
+  }
+
+  .infoLabel,
+  .infoValue {
+    font-size: 1.2rem;
+  }
+
+  .myPlans {
+    width: 85%;
+    padding: 1.8rem;
+  }
+
+  .planHeading {
+    font-size: 1.4rem;
+  }
+
+  .planCard {
+    max-width: 100%;
+  }
+}
+
+/* Tablet (Portrait) - 768px and below */
+@media (max-width: 768px) {
+  .profilePage {
+    padding: 1rem;
+  }
+
+  .userName {
+    width: 95%;
+    min-height: 12rem;
+    padding: 1.2rem;
+    flex-direction: column;
+  }
+
+  .profilePicture {
+    width: 8rem;
+    height: 8rem;
+  }
+
+  .changeImgBtn {
+    top: 9rem;
+    left: 50%;
+    transform: translateX(1.5rem);
+    font-size: 1.2rem;
+    height: 1.6rem;
+    width: 1.6rem;
+  }
+
+  .name p {
+    font-size: 1.6rem;
+  }
+
+  .chooseImgPopUp {
+    width: 50%;
+    height: 8rem;
+    top: 8rem;
+  }
+
+  .customFileBtn {
+    padding: 0.5rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .editBtn,
+  .saveBtn {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.95rem;
+  }
+
+  .container {
+    width: 95%;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+    flex-direction: column;
+  }
+
+  .card {
+    width: 100%;
+    padding: 1.5rem;
+    height: auto;
+  }
+
+  .cardTitle {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .infoList {
+    gap: 0.8rem;
+  }
+
+  .infoLabel,
+  .infoValue {
+    font-size: 1.1rem;
+  }
+
+  .myPlans {
+    width: 95%;
+    padding: 1.5rem;
+  }
+
+  .planHeading {
+    font-size: 1.3rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .planCard {
+    padding: 1.5em;
+  }
+
+  .title {
+    font-size: 1.1rem;
+  }
+
+  .description {
+    font-size: 0.85rem;
+  }
+
+  .progressInfo {
+    font-size: 0.85rem;
+  }
+
+  .continueBtn {
+    font-size: 0.95rem;
+    padding: 0.55em 0.9em;
+  }
+}
+
+/* Mobile - 480px and below */
+@media (max-width: 480px) {
+  .profilePage {
+    padding: 0.8rem;
+  }
+
+  .userName {
+    width: 100%;
+    min-height: auto;
+    padding: 1.5rem 1rem;
+    gap: 1rem;
+  }
+
+  .profilePicture {
+    width: 7rem;
+    height: 7rem;
+  }
+
+  .changeImgBtn {
+    top: 8rem;
+    left: 50%;
+    transform: translateX(1.2rem);
+    font-size: 1.1rem;
+    height: 1.5rem;
+    width: 1.5rem;
+  }
+
+  .name {
+    gap: 0.8rem;
+  }
+
+  .name p {
+    font-size: 1.4rem;
+    text-align: center;
+  }
+
+  .chooseImgPopUp {
+    width: 70%;
+    height: 7rem;
+    top: 6rem;
+  }
+
+  .customFileBtn {
+    padding: 0.5rem 0.8rem;
+    font-size: 0.9rem;
+  }
+
+  .btnSection {
+    flex-wrap: wrap;
+    gap: 0.8rem;
+  }
+
+  .editBtn,
+  .saveBtn {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    width: 100%;
+  }
+
+  .container {
+    width: 100%;
+    gap: 1.2rem;
+    padding-top: 1.2rem;
+  }
+
+  .card {
+    width: 100%;
+    padding: 1.2rem;
+  }
+
+  .cardTitle {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .infoList {
+    gap: 0.7rem;
+  }
+
+  .infoItem {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.3rem;
+    padding-bottom: 0.7rem;
+    border-bottom: 1px solid rgba(136, 136, 156, 0.2);
+  }
+
+  .infoItem:last-child {
+    border-bottom: none;
+  }
+
+  .infoLabel {
+    font-size: 1rem;
+  }
+
+  .infoValue {
+    font-size: 1.1rem;
+    align-self: flex-end;
+  }
+
+  .myPlans {
+    width: 100%;
+    padding: 1.2rem;
+    margin-top: 1.5rem;
+  }
+
+  .planHeading {
+    font-size: 1.2rem;
+    margin-bottom: 1rem;
+  }
+
+  .planCard {
+    padding: 1.2em;
+    max-width: 100%;
+  }
+
+  .planHeader {
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .title {
+    font-size: 1rem;
+  }
+
+  .status {
+    font-size: 0.75rem;
+    padding: 0.25em 0.7em;
+  }
+
+  .description {
+    font-size: 0.8rem;
+  }
+
+  .progressInfo {
+    font-size: 0.8rem;
+  }
+
+  .continueBtn {
+    font-size: 0.9rem;
+    padding: 0.6em 1em;
+    width: 100%;
+  }
+}
+
+/* Extra Small Mobile - 360px and below */
+@media (max-width: 360px) {
+  .profilePage {
+    padding: 0.5rem;
+  }
+
+  .userName {
+    padding: 1rem 0.8rem;
+  }
+
+  .profilePicture {
+    width: 6rem;
+    height: 6rem;
+  }
+
+  .changeImgBtn {
+    top: 7rem;
+    left: 50%;
+    transform: translateX(1rem);
+    font-size: 1rem;
+    height: 1.4rem;
+    width: 1.4rem;
+  }
+
+  .name p {
+    font-size: 1.2rem;
+  }
+
+  .chooseImgPopUp {
+    width: 80%;
+    height: 6rem;
+    top: 5rem;
+  }
+
+  .customFileBtn {
+    padding: 0.4rem 0.7rem;
+    font-size: 0.85rem;
+  }
+
+  .editBtn,
+  .saveBtn {
+    padding: 0.45rem 0.9rem;
+    font-size: 0.85rem;
+  }
+
+  .container {
+    gap: 1rem;
+    padding-top: 1rem;
+  }
+
+  .card {
+    padding: 1rem;
+  }
+
+  .cardTitle {
+    font-size: 1.1rem;
+  }
+
+  .infoLabel {
+    font-size: 0.95rem;
+  }
+
+  .infoValue {
+    font-size: 1rem;
+  }
+
+  .myPlans {
+    padding: 1rem;
+    margin-top: 1rem;
+  }
+
+  .planHeading {
+    font-size: 1.1rem;
+  }
+
+  .planCard {
+    padding: 1em;
+  }
+
+  .title {
+    font-size: 0.95rem;
+  }
+
+  .status {
+    font-size: 0.7rem;
+  }
+
+  .description {
+    font-size: 0.75rem;
+  }
+
+  .progressInfo {
+    font-size: 0.75rem;
+  }
+
+  .continueBtn {
+    font-size: 0.85rem;
+    padding: 0.5em 0.9em;
+  }
 }

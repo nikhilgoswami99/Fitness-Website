@@ -1,8 +1,13 @@
+/* ============================== */
+/* Base Styles (Desktop) */
+/* ============================== */
 .wrapper {
   display: flex;
   gap: 2rem;
   padding-top: 2rem;
   width: 70%;
+  justify-content: center;
+  align-items: flex-start;
 }
 
 .section {
@@ -13,7 +18,7 @@
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   border: 1px solid rgb(56, 65, 82);
 }
 
@@ -22,6 +27,7 @@
   font-size: 1.5rem;
   text-align: left;
   width: 100%;
+  margin-bottom: 1rem;
 }
 
 .label {
@@ -48,4 +54,127 @@
   justify-content: center;
   gap: 1rem;
   width: 100%;
+}
+
+/* ============================== */
+/* Tablet Landscape / Small Desktop (max-width: 1024px) */
+/* ============================== */
+@media (max-width: 1024px) {
+  .wrapper {
+    width: 85%;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .section {
+    width: 48%;
+    padding: 1.8rem;
+  }
+
+  .heading {
+    font-size: 1.4rem;
+  }
+
+  .label {
+    font-size: 1.2rem;
+  }
+
+  .input {
+    font-size: 0.95rem;
+    padding: 0.75em;
+  }
+}
+
+/* ============================== */
+/* Tablet Portrait (max-width: 768px) */
+/* ============================== */
+@media (max-width: 768px) {
+  .wrapper {
+    flex-direction: column;
+    align-items: center;
+    width: 95%;
+    gap: 1.5rem;
+    padding-top: 1.5rem;
+  }
+
+  .section {
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .heading {
+    font-size: 1.3rem;
+    margin-bottom: 1rem;
+  }
+
+  .label {
+    font-size: 1.1rem;
+  }
+
+  .input {
+    font-size: 0.95rem;
+    padding: 0.7em;
+  }
+}
+
+/* ============================== */
+/* Mobile (max-width: 480px) */
+/* ============================== */
+@media (max-width: 480px) {
+  .wrapper {
+    width: 100%;
+    flex-direction: column;
+    gap: 1.2rem;
+    padding-top: 1.2rem;
+  }
+
+  .section {
+    width: 100%;
+    padding: 1.2rem;
+  }
+
+  .heading {
+    font-size: 1.2rem;
+    margin-bottom: 0.8rem;
+  }
+
+  .label {
+    font-size: 1rem;
+  }
+
+  .inputBox {
+    gap: 0.8rem;
+  }
+
+  .input {
+    font-size: 0.9rem;
+    padding: 0.6em;
+  }
+}
+
+/* ============================== */
+/* Extra Small Mobile (max-width: 360px) */
+/* ============================== */
+@media (max-width: 360px) {
+  .wrapper {
+    padding-top: 1rem;
+    gap: 1rem;
+  }
+
+  .section {
+    padding: 1rem;
+  }
+
+  .heading {
+    font-size: 1.1rem;
+  }
+
+  .label {
+    font-size: 0.95rem;
+  }
+
+  .input {
+    font-size: 0.85rem;
+    padding: 0.5em;
+  }
 }

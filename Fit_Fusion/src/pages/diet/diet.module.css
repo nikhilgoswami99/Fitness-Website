@@ -1,3 +1,4 @@
+/* Base styles (Desktop) */
 .dietPage {
     display: flex;
     flex-direction: column;
@@ -38,7 +39,6 @@
 .calories {
     color: white;
     font-size: 2rem;
-
 }
 
 .units {
@@ -48,7 +48,7 @@
 
 .planImages {
     height: 6rem;
-    width: 6rem
+    width: 6rem;
 }
 
 .foodItems {
@@ -78,7 +78,6 @@
     cursor: pointer;
 }
 
-
 .calorieChart {
     background-color: rgb(38, 39, 59);
     color: white;
@@ -89,20 +88,261 @@
 }
 
 .deleteMenuBtn {
-  border: none;
-  padding: 0.2rem 0.3rem;
-  text-align: center;
-  border-radius: 50%;
-  background-color: rgb(194, 19, 19);
-  color: white;
+    border: none;
+    padding: 0.2rem 0.3rem;
+    text-align: center;
+    border-radius: 50%;
+    background-color: rgb(194, 19, 19);
+    color: white;
+    cursor: pointer;
 }
 
 .menuItem {
-  /* padding: 0.4rem 0.8rem; */
-  border-radius: 5px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 0.5rem;
+    border-radius: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
 }
 
+/* ====================================== */
+/* RESPONSIVE STYLES */
+/* ====================================== */
+
+/* Large Desktop - Above 1400px */
+@media (min-width: 1400px) {
+    .plan {
+        width: 22%;
+    }
+}
+
+/* Tablet (Portrait and Landscape) - 768px to 1024px */
+@media (max-width: 1024px) {
+    .dietPage {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .heading {
+        font-size: 1.8rem;
+    }
+
+    .dietPlans {
+        gap: 1rem;
+    }
+
+    .plan {
+        width: 45%;
+        padding: 1rem;
+        gap: 1.2rem;
+    }
+
+    .planImages {
+        height: 5.5rem;
+        width: 5.5rem;
+    }
+
+    .foodItems {
+        font-size: 1.3rem;
+        gap: 0.3rem;
+    }
+
+    .mealName {
+        font-size: 1.5rem;
+    }
+
+    .calories {
+        font-size: 1.8rem;
+    }
+
+    .units {
+        font-size: 1.3rem;
+    }
+
+    .calorieChart {
+        width: 70%;
+    }
+}
+
+/* Tablet (Portrait) - 768px and below */
+@media (max-width: 768px) {
+    .dietPage {
+        padding: 1rem;
+        gap: 1.5rem;
+    }
+
+    .heading {
+        font-size: 1.6rem;
+    }
+
+    .dietPlans {
+        gap: 1rem;
+    }
+
+    .plan {
+        width: 47%;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .planImages {
+        height: 5rem;
+        width: 5rem;
+    }
+
+    .foodItems {
+        font-size: 1.2rem;
+        gap: 0.3rem;
+    }
+
+    .mealName {
+        font-size: 1.3rem;
+    }
+
+    .calories {
+        font-size: 1.6rem;
+    }
+
+    .units {
+        font-size: 1.2rem;
+    }
+
+    .editBtn {
+        font-size: 1.2rem;
+    }
+
+    .deleteMenuBtn {
+        padding: 0.15rem 0.25rem;
+        font-size: 0.9rem;
+    }
+
+    .calorieChart {
+        width: 85%;
+        padding: 1rem;
+    }
+}
+
+/* Mobile - 480px and below */
+@media (max-width: 480px) {
+    .dietPage {
+        padding: 0.8rem;
+        gap: 1.2rem;
+    }
+
+    .heading {
+        font-size: 1.4rem;
+        text-align: center;
+    }
+
+    .dietPlans {
+        gap: 0.8rem;
+        flex-direction: column;
+        width: 100%;
+    }
+
+    .plan {
+        width: 100%;
+        padding: 1rem;
+        gap: 1rem;
+    }
+
+    .planImages {
+        height: 4.5rem;
+        width: 4.5rem;
+    }
+
+    .foodItems {
+        font-size: 1.1rem;
+        gap: 0.4rem;
+    }
+
+    .mealName {
+        font-size: 1.2rem;
+    }
+
+    .calories {
+        font-size: 1.5rem;
+    }
+
+    .units {
+        font-size: 1.1rem;
+    }
+
+    .editBtn {
+        font-size: 1.1rem;
+    }
+
+    .deleteMenuBtn {
+        padding: 0.15rem 0.25rem;
+        font-size: 0.85rem;
+    }
+
+    .menuItem {
+        gap: 0.4rem;
+    }
+
+    .calorieChart {
+        width: 100%;
+        padding: 1rem;
+    }
+}
+
+/* Extra Small Mobile - 360px and below */
+@media (max-width: 360px) {
+    .dietPage {
+        padding: 0.6rem;
+        gap: 1rem;
+    }
+
+    .heading {
+        font-size: 1.2rem;
+    }
+
+    .dietPlans {
+        gap: 0.6rem;
+    }
+
+    .plan {
+        padding: 0.8rem;
+        gap: 0.8rem;
+    }
+
+    .planImages {
+        height: 4rem;
+        width: 4rem;
+    }
+
+    .foodItems {
+        font-size: 1rem;
+        gap: 0.3rem;
+    }
+
+    .mealName {
+        font-size: 1.1rem;
+    }
+
+    .calories {
+        font-size: 1.3rem;
+    }
+
+    .units {
+        font-size: 1rem;
+    }
+
+    .editBtn {
+        font-size: 1rem;
+    }
+
+    .deleteMenuBtn {
+        padding: 0.1rem 0.2rem;
+        font-size: 0.8rem;
+    }
+
+    .menuItem {
+        gap: 0.3rem;
+    }
+
+    .calorieChart {
+        padding: 0.8rem;
+    }
+}
