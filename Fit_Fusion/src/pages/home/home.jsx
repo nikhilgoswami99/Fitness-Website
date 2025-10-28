@@ -138,7 +138,7 @@ function Home() {
         </div>
       </section>
 
-      <div className={styles.activityTracking}>
+      {/* <div className={styles.activityTracking}>
         <div
           style={{
             display: "flex",
@@ -151,7 +151,7 @@ function Home() {
         <div className={styles.chartContainer}>
           <Chart />
         </div>
-      </div>
+      </div> */}
     </>
   );
 }

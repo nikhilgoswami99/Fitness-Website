@@ -1,60 +1,68 @@
 import React, { useState } from "react";
 import styles from "./profile.module.css";
-import { replace, useNavigate } from "react-router-dom";
-
+import { useNavigate } from "react-router-dom";
 import EditProfile from "../../components/editProfile/editProfile";
-
 import { IoCameraOutline } from "react-icons/io5";
+import { useDispatch, useSelector } from "react-redux";
+import { saveProfile, setProfilePic } from "../../redux/profileSlice";
 
 function Profile() {
-  const [image, setImage] = useState(null);
-  const [changeImg, setChangeImg] = useState(false);
-  const [editProfile, setEditProfile] = useState(false);
-
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
+  // ✅ Access global profile state from Redux
+  const profile = useSelector((state) => state.profile);
+
+  // Local UI flags only
+  const [changeImg, setChangeImg] = useState(false);
+  const [editProfileMode, setEditProfileMode] = useState(false);
+
+  // ✅ Handle profile picture change
+  const handleImage = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      dispatch(setProfilePic(reader.result));
+      setChangeImg(false);
+    };
+    reader.readAsDataURL(file);
+  };
+
+  // ✅ Handle Save button (commit to localStorage)
+  const handleSaveProfile = () => {
+    dispatch(saveProfile());
+    setEditProfileMode(false);
+  };
+
+  // ✅ Navigate
+  const navigateToSavedWorkouts = () => {
+    navigate(`/savedWorkouts`);
+  };
+
+  // Derived data
   const personalInfo = {
-    age: "28 years",
-    height: '165.00 cm (65")',
-    weight: "70.00 kg (154 lbs)",
-    goalWeight: "65.00 kg (143 lbs)",
-    bodyFat: "12.50%",
-    bmi: "25.7",
+    age: profile.age,
+    height: profile.height,
+    weight: profile.weight,
+    goalWeight: profile.goalWeight,
+    bodyFat: profile.bodyFat,
+    bmi: profile.bmi,
   };
 
   const fitnessGoals = {
-    primaryGoal: "Weight Loss",
-    targetDate: "Dec 31, 2025",
-    weeklyWorkouts: "5 sessions",
-    dailyCalories: "2200 kcal",
-    sleepTarget: "8 hours",
-    waterIntake: "3.50 liters",
-  };
-
-  const handleSaveProfile = () => {
-    setEditProfile(false);
-  };
-
-  const handleProfileEdit = () => {
-    setEditProfile(true);
-  };
-
-  const handleImageChange = () => {
-    setChangeImg(true);
-  };
-
-  const handleImage = (e) => {
-    let file = e.target.files[0];
-    setImage(URL.createObjectURL(file));
-    setChangeImg(false);
-  };
-
-  let navigateToSavedWorkouts = () => {
-    navigate(`/savedWorkouts`);
+    primaryGoal: profile.primaryGoal,
+    targetDate: profile.targetDate,
+    weeklyWorkouts: profile.weeklyWorkouts,
+    dailyCalories: profile.dailyCalories,
+    sleepTarget: profile.sleepTarget,
+    waterIntake: profile.waterIntake,
   };
 
   return (
     <div className={styles.profilePage}>
+      {/* ✅ Image change popup */}
       {changeImg && (
         <div className={styles.chooseImgPopUp}>
           <label htmlFor="fileInput" className={styles.customFileBtn}>
@@ -70,26 +78,23 @@ function Profile() {
         </div>
       )}
 
+      {/* ✅ Profile header */}
       <div className={styles.userName}>
         <div className={styles.profilePicture}>
-          <img
-            src={
-              image ||
-              "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png"
-            }
-            alt="Profile Picture"
-          />
+          <img src={profile.profilePic} alt="Profile" />
         </div>
-        <button onClick={handleImageChange} className={styles.changeImgBtn}>
+        <button onClick={() => setChangeImg(true)} className={styles.changeImgBtn}>
           <IoCameraOutline />
         </button>
+
         <div className={styles.name}>
-          <p>Nikhil Goswami</p>
+          <p>{profile.name}</p>
           <div className={styles.btnSection}>
-            <button onClick={handleProfileEdit} className={styles.editBtn}>
-              Edit Profile
-            </button>
-            {editProfile && (
+            {!editProfileMode ? (
+              <button onClick={() => setEditProfileMode(true)} className={styles.editBtn}>
+                Edit Profile
+              </button>
+            ) : (
               <button onClick={handleSaveProfile} className={styles.saveBtn}>
                 Save Changes
               </button>
@@ -98,90 +103,42 @@ function Profile() {
         </div>
       </div>
 
-      {editProfile ? (
-        <EditProfile />
+      {/* ✅ Main section */}
+      {editProfileMode ? (
+        <EditProfile /> // handles updates through Redux
       ) : (
         <div className={styles.container}>
-          {/* Personal Information Card */}
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Personal Information</h2>
             <div className={styles.infoList}>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Age</span>
-                <span className={styles.infoValue}>{personalInfo.age}</span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Height</span>
-                <span className={styles.infoValue}>{personalInfo.height}</span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Weight</span>
-                <span className={styles.infoValue}>{personalInfo.weight}</span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Goal Weight</span>
-                <span className={styles.infoValue}>
-                  {personalInfo.goalWeight}
-                </span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Body Fat</span>
-                <span className={styles.infoValue}>{personalInfo.bodyFat}</span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>BMI</span>
-                <span className={styles.infoValue}>{personalInfo.bmi}</span>
-              </div>
+              {Object.entries(personalInfo).map(([key, value]) => (
+                <div className={styles.infoItem} key={key}>
+                  <span className={styles.infoLabel}>
+                    {key.charAt(0).toUpperCase() + key.slice(1)}
+                  </span>
+                  <span className={styles.infoValue}>{value}</span>
+                </div>
+              ))}
             </div>
           </div>
 
-          {/* Fitness Goals Card */}
           <div className={styles.card}>
             <h2 className={styles.cardTitle}>Fitness Goals</h2>
             <div className={styles.infoList}>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Primary Goal</span>
-                <span className={styles.goalBadge}>
-                  {fitnessGoals.primaryGoal}
-                </span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Target Date</span>
-                <span className={styles.infoValue}>
-                  {fitnessGoals.targetDate}
-                </span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Weekly Workouts</span>
-                <span className={styles.infoValue}>
-                  {fitnessGoals.weeklyWorkouts}
-                </span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Daily Calories</span>
-                <span className={styles.infoValue}>
-                  {fitnessGoals.dailyCalories}
-                </span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Sleep Target</span>
-                <span className={styles.infoValue}>
-                  {fitnessGoals.sleepTarget}
-                </span>
-              </div>
-              <div className={styles.infoItem}>
-                <span className={styles.infoLabel}>Water Intake</span>
-                <span className={styles.infoValue}>
-                  {fitnessGoals.waterIntake}
-                </span>
-              </div>
+              {Object.entries(fitnessGoals).map(([key, value]) => (
+                <div className={styles.infoItem} key={key}>
+                  <span className={styles.infoLabel}>
+                    {key.replace(/([A-Z])/g, " $1").trim()}
+                  </span>
+                  <span className={styles.infoValue}>{value}</span>
+                </div>
+              ))}
             </div>
           </div>
         </div>
       )}
 
-      {/* My workout plans */}
-
+      {/* ✅ Workout plans section */}
       <div className={styles.myPlans}>
         <h2 className={styles.planHeading}>My Workout Plans</h2>
         <div className={styles.planCard}>

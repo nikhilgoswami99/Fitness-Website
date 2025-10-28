@@ -183,9 +183,9 @@ function Diet() {
             </span>
           </div>
         </div>
-        <div className={styles.calorieChart}>
+        {/* <div className={styles.calorieChart}>
           <DietChart />
-        </div>
+        </div> */}
       </div>
     </>
   );
