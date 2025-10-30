@@ -40,32 +40,38 @@ const ExercisesGrid = () => {
     bodyPartData(workoutType, pageNum);
   }, [workoutType, pageNum]);
 
-  const handleSaveWorkout = (exercise) => {
-    try {
-      // Retrieve existing saved workouts (or start with an empty array)
-      const existingWorkouts =
-        JSON.parse(localStorage.getItem("savedWorkouts")) || [];
+  const handleSaveWorkout = (exercise, workoutType) => {
+  try {
+    // Get saved workouts or create empty object
+    const savedWorkouts = JSON.parse(localStorage.getItem("savedWorkouts")) || {};
 
-      // Avoid duplicates based on exercise ID or name
-      const alreadySaved = existingWorkouts.some(
-        (item) => item.id === exercise.id || item.name === exercise.name
-      );
-
-      if (alreadySaved) {
-        alert("This workout is already saved!");
-        return;
-      }
-
-      const updatedWorkouts = [...existingWorkouts, exercise];
-
-      // Save updated list without touching diet details
-      localStorage.setItem("savedWorkouts", JSON.stringify(updatedWorkouts));
-
-      alert("Workout added to your saved list!");
-    } catch (err) {
-      console.error("Error saving workout:", err);
+    // If no array exists for this workoutType, create one
+    if (!savedWorkouts[workoutType]) {
+      savedWorkouts[workoutType] = [];
     }
-  };
+
+    // Check if workout already exists under that category
+    const alreadySaved = savedWorkouts[workoutType].some(
+      (item) => item.id === exercise.id || item.name === exercise.name
+    );
+
+    if (alreadySaved) {
+      alert("This workout is already saved in this category!");
+      return;
+    }
+
+    // Push workout into that category
+    savedWorkouts[workoutType].push(exercise);
+
+    // Save back to localStorage
+    localStorage.setItem("savedWorkouts", JSON.stringify(savedWorkouts));
+
+    alert("Workout added to your plan!");
+  } catch (err) {
+    console.error("Error saving workout:", err);
+  }
+};
+
 
   const titleText = `${workoutType.charAt(0).toUpperCase() + workoutType.slice(1)} Exercises`;
 
@@ -90,7 +96,7 @@ const ExercisesGrid = () => {
                   {exercise.target} • {exercise.equipment}
                 </p>
                 <button
-                  onClick={() => handleSaveWorkout(exercise)}
+                  onClick={() => handleSaveWorkout(exercise, workoutType)}
                   className={styles.addButton}
                 >
                   + Add to Plan

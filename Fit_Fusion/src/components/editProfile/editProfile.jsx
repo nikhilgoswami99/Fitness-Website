@@ -12,6 +12,7 @@ function EditProfile() {
   // ✅ Handle input changes — instantly update Redux state
   const handleChange = (e) => {
     const { id, value } = e.target;
+    
 
     // Map input IDs to Redux keys
     const map = {

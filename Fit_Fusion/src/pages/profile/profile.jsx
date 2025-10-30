@@ -83,7 +83,10 @@ function Profile() {
         <div className={styles.profilePicture}>
           <img src={profile.profilePic} alt="Profile" />
         </div>
-        <button onClick={() => setChangeImg(true)} className={styles.changeImgBtn}>
+        <button
+          onClick={() => setChangeImg(true)}
+          className={styles.changeImgBtn}
+        >
           <IoCameraOutline />
         </button>
 
@@ -91,7 +94,10 @@ function Profile() {
           <p>{profile.name}</p>
           <div className={styles.btnSection}>
             {!editProfileMode ? (
-              <button onClick={() => setEditProfileMode(true)} className={styles.editBtn}>
+              <button
+                onClick={() => setEditProfileMode(true)}
+                className={styles.editBtn}
+              >
                 Edit Profile
               </button>
             ) : (

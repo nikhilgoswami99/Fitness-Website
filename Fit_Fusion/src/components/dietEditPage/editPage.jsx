@@ -144,14 +144,14 @@ const AddDietMenu = (props) => {
           </div>
         </div>
 
-        <div className={styles.row}>
+        {/* <div className={styles.row}>
           <div className={styles.label}>
             Total kcal: <strong>{foodItem.kcalPerUnit} kcal</strong>
           </div>
           <div className={styles.label}>
             Recommended kcal: <strong>{recommendedKcal} kcal</strong>
           </div>
-        </div>
+        </div> */}
 
         <div className={styles.row}>
           <label className={styles.label}>Date</label>

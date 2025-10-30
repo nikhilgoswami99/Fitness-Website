@@ -33,7 +33,7 @@ function Navbar() {
           Profile
         </NavLink>
       </ul>
-      <button className={styles.signOut}>Sign Out</button>
+      {/* <button className={styles.signOut}>Sign Out</button> */}
     </nav>
   );
 }

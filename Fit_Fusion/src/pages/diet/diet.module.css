@@ -52,15 +52,14 @@
 }
 
 .foodItems {
-    font-size: 1.5rem;
-    color: #88889c;
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.3rem;
-    word-wrap: break-word;
-    word-break: break-word;
-    text-align: center;
-    justify-content: center;
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+  align-items: stretch;
+  justify-content: center;
+  text-align: left;
+  color: #88889c;
+  width: 100%;
 }
 
 .mealName {
@@ -88,21 +87,47 @@
 }
 
 .deleteMenuBtn {
-    border: none;
-    padding: 0.2rem 0.3rem;
-    text-align: center;
-    border-radius: 50%;
-    background-color: rgb(194, 19, 19);
-    color: white;
-    cursor: pointer;
+  border: none;
+  padding: 0.2rem 0.4rem;
+  text-align: center;
+  border-radius: 50%;
+  background-color: rgb(190, 37, 37);
+  color: white;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: 0.2s ease;
+}
+
+.deleteMenuBtn:hover {
+  transform: scale(1.1);
 }
 
 .menuItem {
-    border-radius: 5px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 0.5rem;
+  background-color: rgb(56, 65, 82);
+  border: 1px solid rgb(56, 65, 82);
+  border-radius: 8px;
+  padding: 0.5rem 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  width: 100%;
+}
+
+.itemName {
+  color: #fff;
+  font-weight: 500;
+  font-size: 1.1rem;
+  margin-right: 0.5rem;
+}
+
+.itemDetails {
+  display: flex;
+  gap: 0.6rem;
+  flex-wrap: wrap;
+  font-size: 0.9rem;
+  color: #a0a0b0;
 }
 
 /* ====================================== */

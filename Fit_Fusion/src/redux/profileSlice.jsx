@@ -2,15 +2,15 @@ import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
   name: "Nikhil Goswami",
-  age: "28",
+  age: "25",
   height: "165",
-  weight: "70",
-  goalWeight: "65",
-  bodyFat: "12.5",
+  weight: "90",
+  goalWeight: "70",
+  bodyFat: "20.5",
   primaryGoal: "Weight Loss",
   targetDate: "2025-12-31",
   weeklyWorkouts: "5",
-  dailyCalories: "2200",
+  dailyCalories: "2100",
   sleepTarget: "8",
   waterIntake: "3.5",
   profilePic:

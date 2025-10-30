@@ -34,30 +34,40 @@
     justify-content: center;
     gap: 1rem;
     width: 100%;
+    flex-wrap: wrap;
 }
 
+/* ✅ Updated Activity Card Styles */
 .activityCard {
-    height: auto;
-    width: 12rem;
-    padding: 2.8rem;
+    width: 10rem;
+    height: 10rem;
     border-radius: 50%;
+    padding: 1rem;
     cursor: pointer;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    gap: 1rem;
+    gap: 0.5rem;
+    background: linear-gradient(145deg, rgba(255, 255, 255, 0.08), rgba(0, 0, 0, 0.15));
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.activityCard:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.4);
 }
 
 .activityCard p {
     color: white;
     width: 100%;
     text-align: center;
-    font-size: large;
+    font-size: 1rem;
 }
 
 .goalCompleted {
-    font-size: 2rem !important;
+    font-size: 1.8rem !important;
     font-weight: bold;
 }
 
@@ -265,14 +275,9 @@
         max-width: 100%;
     }
 
-    .activityContainer {
-        flex-wrap: wrap;
-        gap: 1rem;
-    }
-
     .activityCard {
-        width: 10rem;
-        padding: 2rem;
+        width: 8rem;
+        height: 8rem;
     }
 
     .myCardProfile {
@@ -305,17 +310,15 @@
         gap: 1.5rem;
     }
 
-    .activityContainer {
-        gap: 0.8rem;
-    }
-
     .activityCard {
-        width: 8.5rem;
-        padding: 1.8rem;
+        width: 7.5rem;
+        height: 7.5rem;
+        border-radius: 50%;
+        padding: 1rem;
     }
 
     .activityCard p {
-        font-size: medium;
+        font-size: 0.9rem;
     }
 
     .goalCompleted {
@@ -394,6 +397,21 @@
 
 /* Mobile - 480px and below */
 @media (max-width: 480px) {
+    .activityCard {
+        width: 6rem;
+        height: 6rem;
+        border-radius: 50%;
+        padding: 0.8rem;
+    }
+
+    .activityCard p {
+        font-size: 0.8rem;
+    }
+
+    .goalCompleted {
+        font-size: 1.2rem !important;
+    }
+
     .homePage {
         padding: 0.5rem;
         gap: 1rem;
@@ -406,33 +424,6 @@
 
     .heading {
         font-size: 1.3rem;
-    }
-
-    .activityContainer {
-        gap: 0.5rem;
-        flex-wrap: wrap;
-    }
-
-    .activityCard {
-        width: 7rem;
-        padding: 1.5rem;
-        gap: 0.5rem;
-    }
-
-    .activityCard p {
-        font-size: small;
-    }
-
-    .goalCompleted {
-        font-size: 1.3rem !important;
-    }
-
-    .exercises {
-        padding: 0.8rem;
-    }
-
-    .cardContainer {
-        gap: 0.8rem;
     }
 
     .myCardWrapper {
@@ -536,8 +527,9 @@
 /* Extra Small Mobile - 360px and below */
 @media (max-width: 360px) {
     .activityCard {
-        width: 6rem;
-        padding: 1.2rem;
+        width: 5.5rem;
+        height: 5.5rem;
+        padding: 1rem;
     }
 
     .activityCard p {
