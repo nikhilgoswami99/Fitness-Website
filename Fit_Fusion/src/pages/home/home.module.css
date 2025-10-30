@@ -405,7 +405,7 @@
     }
 
     .activityCard p {
-        font-size: 0.8rem;
+        font-size: 0.6rem;
     }
 
     .goalCompleted {
@@ -527,8 +527,8 @@
 /* Extra Small Mobile - 360px and below */
 @media (max-width: 360px) {
     .activityCard {
-        width: 5.5rem;
-        height: 5.5rem;
+        width: 5.8rem;
+        height: 5.8rem;
         padding: 1rem;
     }
 
@@ -537,7 +537,7 @@
     }
 
     .goalCompleted {
-        font-size: 1.1rem !important;
+        font-size: 1rem !important;
     }
 
     .myCardName {
