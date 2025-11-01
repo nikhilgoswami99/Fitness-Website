@@ -80,15 +80,17 @@ function Profile() {
 
       {/* ✅ Profile header */}
       <div className={styles.userName}>
-        <div className={styles.profilePicture}>
-          <img src={profile.profilePic} alt="Profile" />
+        <div className={styles.ImgBtnBox}>
+          <div className={styles.profilePicture}>
+            <img src={profile.profilePic} alt="Profile" />
+          </div>
+          <button
+            onClick={() => setChangeImg(true)}
+            className={styles.changeImgBtn}
+          >
+            <IoCameraOutline />
+          </button>
         </div>
-        <button
-          onClick={() => setChangeImg(true)}
-          className={styles.changeImgBtn}
-        >
-          <IoCameraOutline />
-        </button>
 
         <div className={styles.name}>
           <p>{profile.name}</p>

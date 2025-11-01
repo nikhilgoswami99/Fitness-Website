@@ -9,7 +9,6 @@
 }
 
 .userName {
-  position: relative;
   display: flex;
   flex-wrap: wrap;
   align-items: center;
@@ -37,6 +36,7 @@
 }
 
 .profilePicture {
+  position: relative;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -49,27 +49,38 @@
 }
 
 .profilePicture img {
-  height: auto;
+  height: 100%;
   width: 100%;
   object-fit: cover;
 }
 
+.ImgBtnBox {
+  width: auto;
+  height: auto;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
 .changeImgBtn {
-  position: absolute;
-  top: 11.22rem;
-  right: 31.4rem;
+  z-index: 2;
   background-color: rgb(51, 138, 239);
   border: none;
-  font-size: 1.5rem;
+  font-size: 1.2rem;
   color: white;
   border-radius: 50%;
   cursor: pointer;
-  height: 2rem;
-  width: 2rem;
+  height: 2.2rem;
+  width: 2.2rem;
   display: flex;
   align-items: center;
   justify-content: center;
 }
+
+/* .profilePicture:hover .changeImgBtn {
+  display: flex;
+} */
 
 .chooseFile {
   display: none;
@@ -291,7 +302,6 @@
   cursor: pointer;
 }
 
-
 /* Tablet (Portrait and Landscape) - 768px to 1024px */
 @media (max-width: 1024px) {
   .profilePage {
@@ -310,10 +320,6 @@
   }
 
   .changeImgBtn {
-    top: 10rem;
-    right: auto;
-    left: 50%;
-    transform: translateX(2rem);
     font-size: 1.3rem;
     height: 1.8rem;
     width: 1.8rem;
@@ -335,7 +341,7 @@
   }
 
   .card {
-    width: 48%;
+    width: 100%;
     padding: 1.8rem;
     height: auto;
     min-height: 50vh;
@@ -383,9 +389,6 @@
   }
 
   .changeImgBtn {
-    top: 9rem;
-    left: 50%;
-    transform: translateX(1.5rem);
     font-size: 1.2rem;
     height: 1.6rem;
     width: 1.6rem;
@@ -490,9 +493,6 @@
   }
 
   .changeImgBtn {
-    top: 8rem;
-    left: 50%;
-    transform: translateX(1.2rem);
     font-size: 1.1rem;
     height: 1.5rem;
     width: 1.5rem;
@@ -632,9 +632,6 @@
   }
 
   .changeImgBtn {
-    top: 7rem;
-    left: 50%;
-    transform: translateX(1rem);
     font-size: 1rem;
     height: 1.4rem;
     width: 1.4rem;
