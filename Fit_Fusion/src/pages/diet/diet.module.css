@@ -77,6 +77,11 @@
     cursor: pointer;
 }
 
+.editBtn:hover {
+    color: #2563EB;
+    transform: scale(1.1);
+}
+
 .calorieChart {
     background-color: rgb(38, 39, 59);
     color: white;
@@ -88,18 +93,19 @@
 
 .deleteMenuBtn {
   border: none;
-  padding: 0.2rem 0.4rem;
   text-align: center;
   border-radius: 50%;
-  background-color: rgb(190, 37, 37);
-  color: white;
+  background-color: transparent;
+  color: rgb(167, 153, 153);
   cursor: pointer;
-  font-size: 0.9rem;
+  font-size: 1.5rem;
+  font-weight: bold;
   transition: 0.2s ease;
 }
 
 .deleteMenuBtn:hover {
   transform: scale(1.1);
+  color: #c22323;
 }
 
 .menuItem {
@@ -238,7 +244,7 @@
 
     .deleteMenuBtn {
         padding: 0.15rem 0.25rem;
-        font-size: 0.9rem;
+        font-size: 1.5rem;
     }
 
     .calorieChart {
@@ -299,7 +305,7 @@
 
     .deleteMenuBtn {
         padding: 0.15rem 0.25rem;
-        font-size: 0.85rem;
+        font-size: 1.5rem;
     }
 
     .menuItem {
@@ -360,7 +366,7 @@
 
     .deleteMenuBtn {
         padding: 0.1rem 0.2rem;
-        font-size: 0.8rem;
+        font-size: 1.5rem;
     }
 
     .menuItem {

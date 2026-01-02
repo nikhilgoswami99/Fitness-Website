@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import styles from "./diet.module.css";
 
+import { MdDeleteForever } from "react-icons/md";
+
 import breakfastImg from "../../assets/breakfast_img.png";
 import lunchImg from "../../assets/lunck_img.png";
 import snackImg from "../../assets/snack_img.png";
@@ -136,7 +138,7 @@ useEffect(() => {
                             }
                             className={styles.deleteMenuBtn}
                           >
-                            ✕
+                            <MdDeleteForever />
                           </button>
                         </div>
                       ))
@@ -182,7 +184,7 @@ useEffect(() => {
                             }
                             className={styles.deleteMenuBtn}
                           >
-                            ✕
+                            <MdDeleteForever />
                           </button>
                         </div>
                       ))
@@ -228,7 +230,7 @@ useEffect(() => {
                             }
                             className={styles.deleteMenuBtn}
                           >
-                            ✕
+                            <MdDeleteForever />
                           </button>
                         </div>
                       ))
@@ -272,7 +274,7 @@ useEffect(() => {
                 }
                 className={styles.deleteMenuBtn}
               >
-                ✕
+                <MdDeleteForever />
               </button>
             </div>
           ))
