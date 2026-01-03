@@ -152,6 +152,12 @@
     .dietPage {
         padding: 1rem;
         gap: 1.5rem;
+
+    /*
+        Stylesheet: diet.module.css
+        Purpose: Styles for the Diet page (meal cards, menu lists and edit)
+        Notes: Sections are grouped for meal card, menu display and actions.
+    */
     }
 
     .heading {

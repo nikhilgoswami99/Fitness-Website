@@ -1,3 +1,10 @@
+/*
+  Component: Navbar
+  Purpose: Top navigation bar with links to main app sections.
+  Key points:
+  - Uses `NavLink` to apply active styling.
+  - Stateless presentational component.
+*/
 import styles from "./navbar.module.css";
 import logo from "../../assets/logo.png";
 

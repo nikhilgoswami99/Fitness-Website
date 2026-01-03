@@ -1,3 +1,12 @@
+/*
+  Page: Diet
+  Purpose: Display meal plans (Breakfast/Lunch/Snacks/Dinner) and allow
+           editing each via the `DietEdit` component.
+  Behavior:
+  - Loads `meals` from localStorage (initializes sample if none exist).
+  - `handleEdit` opens the diet edit modal for that meal type.
+  - `handleDeleteFoodItem` mutates `meals` state and persists changes.
+*/
 import React, { useEffect, useState } from "react";
 import styles from "./diet.module.css";
 

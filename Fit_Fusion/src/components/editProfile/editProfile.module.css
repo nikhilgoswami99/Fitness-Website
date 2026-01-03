@@ -10,6 +10,12 @@
   align-items: flex-start;
 }
 
+/*
+  Stylesheet: editProfile.module.css
+  Purpose: Form layout and control styles used by `EditProfile` component.
+  Sections: wrapper, sections, inputs and buttons.
+*/
+
 .section {
   background-color: rgb(38, 39, 59);
   padding: 2rem;

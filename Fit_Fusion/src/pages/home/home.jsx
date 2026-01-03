@@ -1,3 +1,12 @@
+/*
+  Page: Home
+  Purpose: Dashboard showing quick activity stats, profile summary,
+           and an exploration grid of exercise categories.
+  Key pieces:
+  - Reads `profile` from Redux to show personal stats.
+  - Renders `Card` components for each `workoutType` and navigates
+    to the `Workouts` page when a card is clicked.
+*/
 import Card from "../../components/bodyPartCard/card";
 import styles from "./home.module.css";
 

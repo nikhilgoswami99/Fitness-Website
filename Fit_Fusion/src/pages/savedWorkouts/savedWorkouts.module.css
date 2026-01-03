@@ -1,3 +1,8 @@
+/*
+  Stylesheet: savedWorkouts.module.css
+  Purpose: Styling for the saved workouts page — groups saved
+           exercises by category and styles the empty state.
+*/
 @import "../workouts/workouts.module.css";
 
 .emptyText {

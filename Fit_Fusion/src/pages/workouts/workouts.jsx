@@ -1,3 +1,12 @@
+/*
+  Page: Workouts (ExercisesGrid)
+  Purpose: Fetch and display exercises for a selected `workoutType`.
+  Behavior:
+  - Reads `workoutType` from route params.
+  - Fetches exercise list from the external exerciseDB API and
+    supports simple pagination via `pageNum`.
+  - Allows saving exercises to localStorage under `savedWorkouts`.
+*/
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";

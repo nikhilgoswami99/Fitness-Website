@@ -1,3 +1,10 @@
+/*
+  Component: DietChart
+  Purpose: Render a small pie chart summarizing macronutrient breakdown.
+  Notes:
+  - Uses `recharts` PieChart and maps `data` -> `Cell` colors.
+  - Label formatter shows percentage and tooltip shows grams.
+*/
 import React from "react";
 import styles from './dietChart.module.css'
 

@@ -308,6 +308,12 @@
     padding: 1rem;
   }
 
+  /*
+    Stylesheet: profile.module.css
+    Purpose: Styles for the user's Profile page — header, info cards,
+             and plan sections. Grouped by `.userName`, `.container`, etc.
+  */
+
   .userName {
     width: 85%;
     min-height: 13rem;

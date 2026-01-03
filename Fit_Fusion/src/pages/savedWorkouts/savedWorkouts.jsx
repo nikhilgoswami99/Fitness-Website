@@ -1,3 +1,12 @@
+/*
+  Page: SavedWorkouts
+  Purpose: Show workouts saved by the user in localStorage grouped by
+           body part / workout category.
+  Behavior:
+  - Reads `savedWorkouts` from localStorage which is an object keyed by
+    workoutType (e.g., `chest`, `legs`).
+  - Allows removal of individual exercises and persists changes.
+*/
 import { useEffect, useState } from "react";
 import styles from "./savedWorkouts.module.css";
 

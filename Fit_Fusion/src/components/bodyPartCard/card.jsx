@@ -1,3 +1,12 @@
+/*
+  Component: Card (BodyPartCard)
+  Purpose: Small clickable card representing an exercise body part.
+  Props:
+  - `obj` : { type, imageUrl } - displays the card content.
+  - `handleCardClick(type)` : function invoked when user clicks the card.
+  Notes:
+  - Pure presentational component; click handler is passed from parent.
+*/
 import React from 'react'
 import styles from './card.module.css'
 

@@ -7,6 +7,12 @@
     padding: 2rem;
 }
 
+/*
+  Stylesheet: home.module.css
+  Purpose: Layout and styling for Home dashboard — activity cards,
+              profile summary and plan sections are grouped below.
+*/
+
 .mainContent {
     width: 70vw;
     display: flex;

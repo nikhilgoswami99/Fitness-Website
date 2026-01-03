@@ -40,6 +40,12 @@
     object-position: top;
     border-radius: 10px;
     position: absolute;
+
+    /*
+        Stylesheet: card.module.css
+        Purpose: Styles for the body part card used on the Home explore grid.
+        Sections: root card, image and heading styles.
+    */
     z-index: 0;
     transition: 0.5s all ease-in-out;
 }

@@ -1,4 +1,9 @@
 /* Base styles (Desktop) */
+./*
+.  Stylesheet: navbar.module.css
+.  Purpose: Styles for the top navigation bar component. Sections below
+.           group base, responsive and utility styles for clarity.
+.*/
 .navbar {
     padding: 1rem;
     display: flex;

@@ -1,3 +1,11 @@
+/*
+  Component: WorkoutBarChart
+  Purpose: Small summary bar chart displaying minutes per activity.
+  Notes:
+  - Uses `recharts` responsive container and custom bar colors.
+  - Data is currently static (placeholder); replace with real data
+    if integrating with analytics or user activity.
+*/
 import React from 'react';
 import {
   BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell

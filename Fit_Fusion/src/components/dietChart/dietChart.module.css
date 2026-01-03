@@ -1,0 +1,20 @@
+/*
+	Stylesheet: dietChart.module.css
+	Purpose: Small chart container styles used by `DietChart` component.
+	Notes: Keeps chart responsive and positions legend.
+*/
+
+.container {
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+
+.chart {
+	max-width: 100%;
+}
+
+.legend {
+	font-size: 0.9rem;
+}
+

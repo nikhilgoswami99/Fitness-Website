@@ -1,3 +1,14 @@
+/*
+  Component: AddDietMenu (Diet Edit)
+  Purpose: UI for creating and editing a meal/menu for a specific plan.
+  Props:
+  - `planName` : string name of the meal (Breakfast/Lunch/etc.)
+  - `setMeals(prev => ...)` : callback to update the parent `meals` array
+  - `handleEdit(false)` : function to close the editor modal
+  Notes:
+  - Manages local `foodItem` and `menuItems` states and pushes new meals
+    into parent `meals` using `setMeals`.
+*/
 import React, { useEffect, useState } from "react";
 import styles from "./editPage.module.css";
 

@@ -1,3 +1,10 @@
+/*
+  Entry: main.jsx
+  Purpose: App entry point that bootstraps React, provides the Redux
+           store and sets up client-side routes using `react-router`.
+  Notes:
+  - Routes are defined here and mount under the `App` layout.
+*/
 import { createRoot } from "react-dom/client";
 import "./index.css";
 import App from "./App.jsx";

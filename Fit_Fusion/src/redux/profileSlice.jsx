@@ -1,3 +1,11 @@
+/*
+  Redux Slice: profileSlice
+  Purpose: Holds user's profile information and provides reducers to
+           update fields, set the profile picture, and persist the
+           profile to `localStorage` via `saveProfile`.
+  Notes:
+  - Initializes from `localStorage` key `userProfile` when available.
+*/
 import { createSlice } from "@reduxjs/toolkit";
 
 const initialState = {

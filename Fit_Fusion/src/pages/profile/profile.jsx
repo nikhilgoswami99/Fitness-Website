@@ -1,3 +1,12 @@
+/*
+  Page: Profile
+  Purpose: Show user's profile summary, allow image change and
+           toggling into edit mode which uses `EditProfile`.
+  Behavior:
+  - Uses Redux `profile` for persistent user data.
+  - Local UI state for `changeImg` and `editProfileMode`.
+  - `handleImage` reads a file and stores a base64 image via Redux.
+*/
 import React, { useState } from "react";
 import styles from "./profile.module.css";
 import { useNavigate } from "react-router-dom";

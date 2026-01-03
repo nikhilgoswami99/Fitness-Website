@@ -1,3 +1,11 @@
+/*
+  Component: EditProfile
+  Purpose: Form UI to edit the user's profile stored in Redux.
+  Behavior:
+  - Reads `profile` from Redux via `useSelector`.
+  - Dispatches `updateProfile` on input changes to keep state synced.
+  - Uses a `map` to translate input `id`s to Redux keys.
+*/
 import React from "react";
 import styles from "./editProfile.module.css";
 import { useSelector, useDispatch } from "react-redux";
