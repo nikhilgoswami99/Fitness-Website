@@ -4,17 +4,17 @@ import axios from "axios";
 
 function SignUp() {
   const [jokes, setJokes] = useState([]);
-  useEffect(() => {
-    axios
-      .get("/api/jokes")
-      .then((response) => {
-        setJokes(response.data);
-        console.log(response);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
-  }, []);
+  // useEffect(() => {
+  //   axios
+  //     .get("/api/jokes")
+  //     .then((response) => {
+  //       setJokes(response.data);
+  //       console.log(response);
+  //     })
+  //     .catch((error) => {
+  //       console.log(error);
+  //     });
+  // }, []);
 
   return (
     <div className={styles.container}>
