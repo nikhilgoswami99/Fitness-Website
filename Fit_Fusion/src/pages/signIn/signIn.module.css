@@ -1,0 +1,164 @@
+/* Root Colors */
+:root {
+  --bg-main: #0b1020;
+  --bg-card: #151a2e;
+  --text-main: #ffffff;
+  --text-muted: #9ca3af;
+  --blue: #3b82f6;
+  --pink: #ec4899;
+  --orange: #f59e0b;
+}
+
+.container {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  background: radial-gradient(circle at top, #121a3a, var(--bg-main));
+  color: var(--text-main);
+  padding: 4vw;
+}
+
+/* LEFT */
+.left {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: 2rem;
+}
+
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-size: 1.4rem;
+  font-weight: 700;
+}
+
+.logo {
+  color: var(--orange);
+}
+
+.stats {
+  display: flex;
+  gap: 1.2rem;
+}
+
+
+
+.blue {
+  background: var(--blue);
+}
+.pink {
+  background: var(--pink);
+}
+.orange {
+  background: var(--orange);
+}
+
+.heading {
+  font-size: clamp(2.2rem, 4vw, 3.5rem);
+  line-height: 1.2;
+}
+
+.heading span {
+  color: var(--blue);
+}
+
+.subText {
+  max-width: 38ch;
+  color: var(--text-muted);
+  font-size: 1rem;
+}
+
+/* RIGHT */
+.right {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.card {
+  background: var(--bg-card);
+  width: min(90%, 26rem);
+  padding: 2.5rem;
+  border-radius: 1.2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.card h2 {
+  font-size: 1.8rem;
+}
+
+.card p {
+  color: var(--text-muted);
+  font-size: 0.9rem;
+}
+
+.card label {
+  font-size: 0.85rem;
+}
+
+.card input {
+  background: transparent;
+  border: 1px solid #2a2f45;
+  padding: 0.8rem;
+  border-radius: 0.6rem;
+  color: white;
+}
+
+.forgot {
+  align-self: flex-end;
+  font-size: 0.8rem;
+  color: var(--blue);
+  cursor: pointer;
+}
+
+.primaryBtn {
+  background: var(--blue);
+  border: none;
+  padding: 0.9rem;
+  border-radius: 0.6rem;
+  color: white;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+.divider {
+  text-align: center;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+.socials {
+  display: flex;
+  gap: 1rem;
+}
+
+.socials button {
+  flex: 1;
+  background: transparent;
+  border: 1px solid #2a2f45;
+  padding: 0.6rem;
+  border-radius: 0.6rem;
+  color: white;
+}
+
+.signup {
+  font-size: 0.8rem;
+  text-align: center;
+}
+
+.signup span {
+  color: var(--blue);
+  cursor: pointer;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .container {
+    grid-template-columns: 1fr;
+    gap: 4rem;
+  }
+}

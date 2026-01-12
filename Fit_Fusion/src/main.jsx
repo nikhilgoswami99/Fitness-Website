@@ -17,6 +17,8 @@ import Diet from "./pages/diet/diet.jsx";
 import Profile from "./pages/profile/profile.jsx";
 import Workouts from "./pages/workouts/workouts.jsx";
 import SavedWorkouts from "./pages/savedWorkouts/savedWorkouts.jsx";
+import SignIn from "./pages/signIn/signIn.jsx";
+import SignUp from "./pages/signUp/signUp.jsx";
 
 const router = createBrowserRouter([
   {
@@ -45,6 +47,14 @@ const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: "/login",
+    element: <SignIn/>
+  },
+  {
+    path: 'register',
+    element: <SignUp/>
+  }
 ]);
 
 createRoot(document.getElementById("root")).render(

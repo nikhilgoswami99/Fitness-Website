@@ -1,0 +1,17 @@
+.container{
+    height: 100vh;
+    width: 100vw;
+    background-color: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+    justify-content: center;
+}
+
+.joke {
+    padding: 1rem;
+    border: 2px solid red;
+    
+}
+

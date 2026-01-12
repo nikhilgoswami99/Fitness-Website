@@ -1,0 +1,16 @@
+
+
+.badge {
+  width: 6.5rem;
+  height: 6.5rem;
+  border-radius: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+}
+
+.badge strong {
+  font-size: 1.4rem;
+}

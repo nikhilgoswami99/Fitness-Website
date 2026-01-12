@@ -1,8 +1,8 @@
-./*
+/*
 .  Stylesheet: editPage.module.css
 .  Purpose: Styles for the Diet edit modal (backdrop, container,
 .           form controls and responsive adjustments).
-.*/
+*/
 /* Base styles (Desktop) */
 .backdrop {
   position: fixed;
