@@ -131,6 +131,21 @@
   color: white;
 }
 
+.logoutBtn {
+  background-color: rgb(27, 28, 48);
+  color: rgb(255, 102, 102);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(255, 102, 102);
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.logoutBtn:hover {
+  background-color: rgb(255, 102, 102);
+  color: white;
+}
+
 .btnSection {
   display: flex;
   align-items: center;

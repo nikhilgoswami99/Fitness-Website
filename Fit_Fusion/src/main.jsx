@@ -10,6 +10,7 @@ import "./index.css";
 import App from "./App.jsx";
 import { Provider } from "react-redux";
 import store from "./redux/store";
+import { UserProvider } from "./context/userContext";
 
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Home from "./pages/home/home.jsx";
@@ -59,6 +60,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById("root")).render(
   <Provider store={store}>
-    <RouterProvider router={router} />
+    <UserProvider>
+      <RouterProvider router={router} />
+    </UserProvider>
   </Provider>
 );

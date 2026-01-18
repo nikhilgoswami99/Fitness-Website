@@ -7,13 +7,14 @@
   - Local UI state for `changeImg` and `editProfileMode`.
   - `handleImage` reads a file and stores a base64 image via Redux.
 */
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import styles from "./profile.module.css";
 import { useNavigate } from "react-router-dom";
 import EditProfile from "../../components/editProfile/editProfile";
 import { IoCameraOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
 import { saveProfile, setProfilePic } from "../../redux/profileSlice";
+import { getCurrentUser, logoutUser } from "../../services/appwrite";
 
 function Profile() {
   const navigate = useNavigate();
@@ -48,6 +49,19 @@ function Profile() {
   // ✅ Navigate
   const navigateToSavedWorkouts = () => {
     navigate(`/savedWorkouts`);
+  };
+
+  // ✅ Handle Logout
+  const handleLogout = async () => {
+    try {
+      await logoutUser();
+      
+      // Navigate to sign-in page after successful logout
+      navigate('/login');
+    } catch (error) {
+      console.error("Logout error:", error);
+      alert(error.message || "Failed to logout. Please try again.");
+    }
   };
 
   // Derived data
@@ -116,6 +130,9 @@ function Profile() {
                 Save Changes
               </button>
             )}
+            <button onClick={handleLogout} className={styles.logoutBtn}>
+              Logout
+            </button>
           </div>
         </div>
       </div>
