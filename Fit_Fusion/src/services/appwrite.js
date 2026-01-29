@@ -1,11 +1,12 @@
-import { Client, Account, ID, Avatars, TablesDB, Query } from "appwrite";
+import { Client, Account, ID, Avatars, TablesDB, Query, Storage } from "appwrite";
 
 export const appwriteConfig = {
   endpoint: import.meta.env.VITE_APPWRITE_ENDPOINT,
   projectID: import.meta.env.VITE_APPWRITE_PROJECT_ID,
   databaseID: import.meta.env.VITE_APPWRITE_DATABASE_ID,
   usersTableID: import.meta.env.VITE_APPWRITE_USERS_TABLE_ID,
-  storageID: import.meta.env.VITE_APPWRITE_STORAGE_ID,
+  savedWorkoutsTableID: import.meta.env.VITE_APPWRITE_SAVED_WORKOUTS_TABLE_ID,
+  bucketID: import.meta.env.VITE_APPWRITE_BUCKET_ID,
 };
 
 const client = new Client();
@@ -17,6 +18,7 @@ client
 const account = new Account(client);
 const avatar = new Avatars(client);
 const tablesDB = new TablesDB(client);
+const storage = new Storage(client);
 
 // Register User:-
 export const createUser = async (form) => {
@@ -30,7 +32,7 @@ export const createUser = async (form) => {
 
     if (!newAccount) throw new Error("Account creation failed");
 
-    const avatarURL = `https://ui-avatars.com/api/?name=${encodeURIComponent(form.username)}&background=random`;
+    const avatarURL = `https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png`;
 
     const newUser = await tablesDB.createRow({
       databaseId: appwriteConfig.databaseID,
@@ -80,7 +82,9 @@ const getAccount = async () => {
   }
 };
 
-// Get Current User
+
+
+// Get Current User:-
 export const getCurrentUser = async () => {
   try {
     const currentUser = await getAccount();
@@ -100,3 +104,123 @@ export const getCurrentUser = async () => {
     return null;
   }
 };
+
+// Update Current User:-
+export const updateCurrentUser = async (initialState) => {
+  try {
+    const currentUser = await getCurrentUser();
+    if (!currentUser) throw new Error("No current user");
+
+    const updatedUser = await tablesDB.updateRow({
+      databaseId: appwriteConfig.databaseID,
+      tableId: appwriteConfig.usersTableID,
+      rowId: currentUser.$id,
+      data: {
+        fullName: initialState.name,
+        age: parseInt(initialState.age) || null,
+        height: parseInt(initialState.height) || null,
+        weight: parseInt(initialState.weight) || null,
+        goalWeight: parseInt(initialState.goalWeight) || null,
+        bodyFat: parseInt(initialState.bodyFat) || null,
+        primaryGoal: initialState.primaryGoal,
+        targetDate: initialState.targetDate ? new Date(initialState.targetDate).toISOString() : null,
+        weeklyWorkouts: parseInt(initialState.weeklyWorkouts) || null,
+        dailyCalories: parseInt(initialState.dailyCalories) || null,
+        sleepTarget: parseInt(initialState.sleepTarget) || null,
+        waterIntake: parseInt(initialState.waterIntake) || null,
+      },
+    });
+
+    return updatedUser;
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+
+
+// Update Profile Picture:-
+export const updateProfilePicture = async (file, userId) => {
+  try {
+    console.log("Starting profile picture upload...", { file, userId });
+    
+    // Upload file to Appwrite Storage
+    const uploadedFile = await storage.createFile({
+      bucketId: appwriteConfig.bucketID,
+      fileId: ID.unique(),
+      file: file,
+    });
+    
+    console.log("File uploaded successfully:", uploadedFile);
+
+    // Get the preview URL for the uploaded file
+    const imageUrl = storage.getFileView({
+      bucketId: appwriteConfig.bucketID,
+      fileId: uploadedFile.$id,
+    });
+    
+    console.log("Image URL generated:", imageUrl);
+
+    // Update user row with new profile image URL
+    const updatedUser = await tablesDB.updateRow({
+      databaseId: appwriteConfig.databaseID,
+      tableId: appwriteConfig.usersTableID,
+      rowId: userId,
+      data: { profileImage: imageUrl },
+    });
+
+    console.log("Profile updated successfully:", updatedUser);
+    return updatedUser;
+  } catch (error) {
+    console.error("Error updating profile picture:", error);
+    throw error;
+  }
+};
+
+// Save Workout:-
+export const saveWorkout = async (data) => {
+  try {
+    const response = await tablesDB.createRow({
+      databaseId: appwriteConfig.databaseID,
+      tableId: appwriteConfig.savedWorkoutsTableID,
+      rowId: ID.unique(),
+      data: data,
+    });
+    return response;
+  } catch (error) {
+    throw new Error(error.message || "Failed to save workout");
+  }
+};
+
+// Get Saved Workouts:-
+export const getSavedWorkouts = async (userId) => {
+  try {
+    const response = await tablesDB.listRows({
+      databaseId: appwriteConfig.databaseID,
+      tableId: appwriteConfig.savedWorkoutsTableID,
+      queries: [Query.equal("userID", userId)],
+    });
+    return response.rows;
+  } catch (error) {
+    throw new Error(error.message || "Failed to fetch saved workouts");
+  }
+};
+
+// Remove Saved Workout:-
+export const removeSavedWorkout = async (documentId) => {
+  try {
+    await tablesDB.deleteRow({
+      databaseId: appwriteConfig.databaseID,
+      tableId: appwriteConfig.savedWorkoutsTableID,
+      rowId: documentId,
+    });
+    return documentId;
+  } catch (error) {
+    throw new Error(error.message || "Failed to remove workout");
+  }
+};
+
+
+
+

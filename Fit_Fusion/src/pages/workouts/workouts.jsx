@@ -10,16 +10,26 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import axios from "axios";
+import { toast } from "react-toastify";
+import { useDispatch, useSelector } from "react-redux";
+import { addSavedWorkout, fetchSavedWorkouts } from "../../redux/savedWorkoutsSlice";
+import { useUser } from "../../context/userContext";
 import styles from "./workouts.module.css";
 
 const ExercisesGrid = () => {
   let { workoutType } = useParams();
+  const { isAuthenticated, user } = useUser();
+  const dispatch = useDispatch();
+  
+  // Select saved workouts from Redux state
+  const { workouts: savedWorkouts, loading: saveLoading } = useSelector((state) => state.savedWorkouts);
 
   const [dataArr, setDataArr] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [pageNum, setPageNum] = useState(1);
   const limit = 8;
 
+  // Fetch exercises from ExerciseDB
   const bodyPartData = async (workoutType, pageNum = 1) => {
     setIsLoading(true);
     const options = {
@@ -40,6 +50,7 @@ const ExercisesGrid = () => {
       setDataArr(response.data);
     } catch (error) {
       console.error("Error fetching data", error);
+      toast.error("Failed to fetch exercises");
     } finally {
       setIsLoading(false);
     }
@@ -49,37 +60,49 @@ const ExercisesGrid = () => {
     bodyPartData(workoutType, pageNum);
   }, [workoutType, pageNum]);
 
-  const handleSaveWorkout = (exercise, workoutType) => {
-  try {
-    // Get saved workouts or create empty object
-    const savedWorkouts = JSON.parse(localStorage.getItem("savedWorkouts")) || {};
-
-    // If no array exists for this workoutType, create one
-    if (!savedWorkouts[workoutType]) {
-      savedWorkouts[workoutType] = [];
+  // Fetch saved workouts when user is authenticated
+  useEffect(() => {
+    if (isAuthenticated && user?.accountID) {
+      dispatch(fetchSavedWorkouts(user.accountID));
     }
+  }, [isAuthenticated, user, dispatch]);
 
-    // Check if workout already exists under that category
-    const alreadySaved = savedWorkouts[workoutType].some(
-      (item) => item.id === exercise.id || item.name === exercise.name
-    );
-
-    if (alreadySaved) {
-      alert("This workout is already saved in this category!");
+  const handleSaveWorkout = async (exercise) => {
+    if (!isAuthenticated) {
+      toast.info("Please login first to add workouts to your plan");
       return;
     }
 
-    // Push workout into that category
-    savedWorkouts[workoutType].push(exercise);
+    // Check if duplicate
+    const alreadySaved = savedWorkouts.some(
+      (item) => item.workoutName === exercise.name
+    );
 
-    // Save back to localStorage
-    localStorage.setItem("savedWorkouts", JSON.stringify(savedWorkouts));
+    if (alreadySaved) {
+      toast.warning("This workout is already saved!");
+      return;
+    }
 
-    alert("Workout added to your plan!");
-  } catch (err) {
-    console.error("Error saving workout:", err);
-  }
-};
+    try {
+      // Prepare data for Appwrite
+      const workoutData = {
+        userID: user.accountID,
+        workoutName: exercise.name,
+        targetMuscles: exercise.target,
+        equipment: exercise.equipment,
+        gifURL: exercise.gifUrl,
+        bodypart: workoutType,
+        category: "strength", // Default category required by schema
+      };
+
+      // Dispatch action to save to Appwrite
+      await dispatch(addSavedWorkout(workoutData)).unwrap();
+      toast.success("Workout added to your plan!");
+    } catch (err) {
+      console.error("Error saving workout:", err);
+      toast.error("Error saving workout");
+    }
+  };
 
 
   const titleText = `${workoutType.charAt(0).toUpperCase() + workoutType.slice(1)} Exercises`;
@@ -105,10 +128,11 @@ const ExercisesGrid = () => {
                   {exercise.target} • {exercise.equipment}
                 </p>
                 <button
-                  onClick={() => handleSaveWorkout(exercise, workoutType)}
+                  onClick={() => handleSaveWorkout(exercise)}
                   className={styles.addButton}
+                  disabled={saveLoading}
                 >
-                  + Add to Plan
+                  {saveLoading ? "Saving..." : "+ Add to Plan"}
                 </button>
               </div>
             </div>

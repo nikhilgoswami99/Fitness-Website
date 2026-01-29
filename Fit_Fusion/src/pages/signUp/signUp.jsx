@@ -1,13 +1,27 @@
 import { useState } from "react";
 import styles from "./signUp.module.css";
-import { createUser } from "../../services/appwrite";
+import { createUser, loginUser, getCurrentUser } from "../../services/appwrite";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/userContext.jsx";
+import { toast } from "react-toastify";
+import logo from "../../assets/logo.png";
 
 export default function Signup() {
+  // State for form inputs
   const [form, setForm] = useState({
     fullName: "",
     email: "",
     password: "",
   });
+
+  // State for loading
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Get navigation function
+  const navigate = useNavigate();
+
+  // Get setUser function from context to update global user state
+  const { setUser } = useUser();
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -16,14 +30,52 @@ export default function Signup() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+
+    // Validate form inputs
+    if (!form.fullName || !form.email || !form.password) {
+      toast.error("Please fill in all fields!");
+      return;
+    }
+
+    // Validate password length
+    if (form.password.length < 8) {
+      toast.error("Password must be at least 8 characters long!");
+      return;
+    }
+
+    setIsLoading(true);
+
     try {
+      // Step 1: Create new user account
       await createUser({
         username: form.fullName,
         email: form.email,
         password: form.password,
       });
+
+      // Step 2: Automatically login the user
+      await loginUser({
+        email: form.email,
+        password: form.password,
+      });
+
+      // Step 3: Get current user data
+      const currentUser = await getCurrentUser();
+
+      // Step 4: Update global user state
+      setUser(currentUser);
+
+      // Step 5: Show success message
+      toast.success(`Welcome to FitFreak, ${form.fullName}!`);
+
+      // Step 6: Navigate to profile page
+      navigate("/profile");
     } catch (error) {
+      // Show error message
       console.log("Signup error:", error);
+      toast.error(`Signup failed: ${error.message}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -31,14 +83,7 @@ export default function Signup() {
     <div className={styles.page}>
       {/* Header */}
       <header className={styles.header}>
-        <div className={styles.logo}>
-          <span className={styles.logoIcon}>✖</span>
-          <span>FIT<span className={styles.logoAccent}>FREAK</span></span>
-        </div>
-        <nav className={styles.nav}>
-          <a href="#">Support</a>
-          <a href="#">Contact</a>
-        </nav>
+        <img src={logo} alt="FitFreak Logo" className={styles.logo} />
       </header>
 
       {/* Main */}
@@ -132,14 +177,12 @@ export default function Signup() {
               </label>
             </div> */}
 
-            <button type="submit">Create Account</button>
-
-            <div className={styles.divider}>Or continue with</div>
-
-            <div className={styles.oauth}>
-              <button type="button">Google</button>
-              <button type="button">Apple</button>
-            </div>
+            <button 
+              type="submit"
+              disabled={isLoading}
+            >
+              {isLoading ? "Creating Account..." : "Create Account"}
+            </button>
 
             <p className={styles.signin}>
               Already have an account? <a href="#">Sign in here</a>

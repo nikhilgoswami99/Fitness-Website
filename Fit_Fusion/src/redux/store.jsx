@@ -5,10 +5,12 @@
 */
 import { configureStore } from "@reduxjs/toolkit";
 import profileReducer from "./profileSlice";
+import savedWorkoutsReducer from "./savedWorkoutsSlice";
 
 const store = configureStore({
   reducer: {
     profile: profileReducer,
+    savedWorkouts: savedWorkoutsReducer,
   },
 });
 

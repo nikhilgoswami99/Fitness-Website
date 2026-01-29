@@ -17,10 +17,19 @@ import Chart from "../../components/workoutChart/chart";
 import { useNavigate } from "react-router-dom";
 
 function Home() {
+  const navigate = useNavigate();
 
   const profile = useSelector((state) => state.profile);
+  
 
-  const navigate = useNavigate();
+  //   if (!profile.profile) {
+  //   return <div className={styles.loading}>Loading Profile...</div>;
+  // }
+
+  console.log(profile.profile);
+  
+
+  
 
   let handleCardClick = (workoutType) => {
     navigate(`workouts/${workoutType}`);

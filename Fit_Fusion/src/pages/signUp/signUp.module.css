@@ -10,10 +10,10 @@
 }
 
 .page {
-  min-height: 100vh;
-  background:
-    radial-gradient(circle at top, #101735, transparent 60%),
-    var(--bg-main);
+  height: 100vh;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
   color: var(--text-main);
   font-family: system-ui, sans-serif;
 }
@@ -23,38 +23,32 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: clamp(1rem, 2vw, 2rem);
+  padding: 1rem 2rem;
+  flex-shrink: 0;
 }
 
 .logo {
-  font-weight: 700;
-  font-size: 1.25rem;
-  display: flex;
-  gap: 0.5rem;
-}
-
-.logoAccent {
-  color: var(--orange);
-}
-
-.nav a {
-  margin-left: 1.5rem;
-  color: var(--text-muted);
-  text-decoration: none;
+  height: 3rem;
+  width: auto;
+  object-fit: contain;
 }
 
 /* Main Layout */
 .main {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: clamp(2rem, 4vw, 5rem);
-  padding: clamp(2rem, 5vw, 6rem);
+  gap: 2rem;
+  padding: 1rem 2rem 2rem;
+  flex: 1;
+  overflow: hidden;
+  align-items: center;
 }
 
 /* Hero */
 .hero h1 {
-  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-size: clamp(2rem, 4vw, 3rem);
   line-height: 1.1;
+  margin-bottom: 1rem;
 }
 
 .hero h1 span {
@@ -63,22 +57,22 @@
 
 .hero p {
   max-width: 40ch;
-  margin: 1.5rem 0 2rem;
+  margin: 0 0 1.5rem;
   color: var(--text-muted);
 }
 
 .features {
   display: flex;
   gap: 1rem;
-  margin-bottom: 2rem;
+  margin-bottom: 1.5rem;
 }
 
 .featureCard {
   background: var(--bg-card);
-  padding: 1rem 1.25rem;
-  border-radius: 1rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.75rem;
   display: flex;
-  gap: 0.75rem;
+  gap: 0.5rem;
   align-items: center;
 }
 
@@ -98,35 +92,41 @@
 
 /* Signup Card */
 .card {
-  background: var(--bg-card);
+  background-color: #26273b;
+  border: 1px solid #384152;
   border-radius: 1.5rem;
-  padding: clamp(2rem, 4vw, 3rem);
+  padding: 1.5rem 2rem;
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+  overflow-y: auto;
+  max-height: 100%;
 }
 
 .card h2 {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.3rem;
+  font-size: 1.5rem;
 }
 
 .subtitle {
   color: var(--text-muted);
-  margin-bottom: 2rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
 }
 
 .form label {
   display: block;
-  margin-bottom: 1rem;
+  margin-bottom: 0.75rem;
   font-size: 0.875rem;
 }
 
 .form input {
   width: 100%;
-  margin-top: 0.4rem;
-  padding: 0.75rem 1rem;
-  border-radius: 0.75rem;
+  margin-top: 0.3rem;
+  padding: 0.6rem 0.9rem;
+  border-radius: 0.5rem;
   border: none;
-  background: #0f1530;
+  background-color: rgb(56, 65, 82);
   color: var(--text-main);
+  font-size: 0.9rem;
 }
 
 .checkbox {
@@ -142,21 +142,22 @@
 
 .form button[type="submit"] {
   width: 100%;
-  padding: 0.9rem;
-  border-radius: 0.75rem;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
   border: none;
   background: var(--blue);
   color: white;
   font-weight: 600;
   cursor: pointer;
-  margin-bottom: 1.5rem;
+  margin-bottom: 1rem;
+  font-size: 0.95rem;
 }
 
 .divider {
   text-align: center;
   color: var(--text-muted);
-  font-size: 0.85rem;
-  margin-bottom: 1rem;
+  font-size: 0.8rem;
+  margin-bottom: 0.75rem;
 }
 
 .oauth {
@@ -166,17 +167,18 @@
 
 .oauth button {
   flex: 1;
-  padding: 0.75rem;
-  border-radius: 0.75rem;
-  background: #0f1530;
-  border: none;
+  padding: 0.6rem;
+  border-radius: 0.5rem;
+  background: transparent;
+  border: 1px solid #2a2f45;
   color: var(--text-main);
+  font-size: 0.9rem;
 }
 
 .signin {
   text-align: center;
-  margin-top: 1.5rem;
-  font-size: 0.85rem;
+  margin-top: 1rem;
+  font-size: 0.8rem;
 }
 
 .signin a {

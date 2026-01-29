@@ -13,37 +13,56 @@ import { useNavigate } from "react-router-dom";
 import EditProfile from "../../components/editProfile/editProfile";
 import { IoCameraOutline } from "react-icons/io5";
 import { useDispatch, useSelector } from "react-redux";
-import { saveProfile, setProfilePic } from "../../redux/profileSlice";
-import { getCurrentUser, logoutUser } from "../../services/appwrite";
+import { setProfilePic, updateProfileAsync, selectProfile, updateProfilePicAsync } from "../../redux/profileSlice";
+import {logoutUser } from "../../services/appwrite";
+import { useUser } from "../../context/userContext.jsx";
+import { toast } from "react-toastify";
 
 function Profile() {
   const navigate = useNavigate();
   const dispatch = useDispatch();
 
   // ✅ Access global profile state from Redux
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector(selectProfile);
+  
+  
+  // ✅ Get user context to clear user state on logout
+  const { clearUser } = useUser();
 
   // Local UI flags only
   const [changeImg, setChangeImg] = useState(false);
   const [editProfileMode, setEditProfileMode] = useState(false);
+  
+  if (!profile) {
+    return <div className={styles.loading}>Loading Profile...</div>;
+  }
 
+
+
+  // ✅ Handle profile picture change
   // ✅ Handle profile picture change
   const handleImage = (e) => {
     const file = e.target.files[0];
     if (!file) return;
 
-    const reader = new FileReader();
-    reader.onloadend = () => {
-      dispatch(setProfilePic(reader.result));
-      setChangeImg(false);
-    };
-    reader.readAsDataURL(file);
+    if (profile && profile.$id) {
+       dispatch(updateProfilePicAsync({ file, userId: profile.$id }));
+       setChangeImg(false);
+    }
   };
 
   // ✅ Handle Save button (commit to localStorage)
+  // ✅ Handle Save button (commit to localStorage)
   const handleSaveProfile = () => {
-    dispatch(saveProfile());
-    setEditProfileMode(false);
+    dispatch(updateProfileAsync(profile))
+      .unwrap()
+      .then(() => {
+        toast.success("Profile updated successfully!");
+        setEditProfileMode(false);
+      })
+      .catch((err) => {
+        toast.error(err || "Failed to update profile");
+      });
   };
 
   // ✅ Navigate
@@ -54,13 +73,21 @@ function Profile() {
   // ✅ Handle Logout
   const handleLogout = async () => {
     try {
+      // Step 1: Logout from Appwrite
       await logoutUser();
-      
-      // Navigate to sign-in page after successful logout
-      navigate('/login');
+
+      // Step 2: Clear user from context
+      clearUser();
+
+      // Step 3: Show success message
+      toast.success("Logged out successfully!");
+
+      // Step 4: Navigate to sign-in page
+      navigate("/login");
     } catch (error) {
+      // Show error message
       console.error("Logout error:", error);
-      alert(error.message || "Failed to logout. Please try again.");
+      toast.error(error.message || "Failed to logout. Please try again.");
     }
   };
 
@@ -105,7 +132,7 @@ function Profile() {
       <div className={styles.userName}>
         <div className={styles.ImgBtnBox}>
           <div className={styles.profilePicture}>
-            <img src={profile.profilePic} alt="Profile" />
+            <img src={profile.profileImage} alt="Profile" />
           </div>
           <button
             onClick={() => setChangeImg(true)}

@@ -7,35 +7,61 @@
     workoutType (e.g., `chest`, `legs`).
   - Allows removal of individual exercises and persists changes.
 */
-import { useEffect, useState } from "react";
+import { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchSavedWorkouts, deleteSavedWorkout } from "../../redux/savedWorkoutsSlice";
+import { useUser } from "../../context/userContext";
+import { toast } from "react-toastify";
 import styles from "./savedWorkouts.module.css";
 
 const SavedWorkouts = () => {
-  const [savedWorkouts, setSavedWorkouts] = useState({}); // now object instead of array
+  const dispatch = useDispatch();
+  const { user, isAuthenticated } = useUser();
+  const { workouts, loading, error } = useSelector((state) => state.savedWorkouts);
 
   useEffect(() => {
-    const stored = JSON.parse(localStorage.getItem("savedWorkouts")) || {};
-    setSavedWorkouts(stored);
-  }, []);
-
-  const handleRemove = (workoutType, exerciseName) => {
-    const updated = { ...savedWorkouts };
-    
-    // remove exercise from specific category
-    updated[workoutType] = updated[workoutType].filter(
-      (item) => item.name !== exerciseName
-    );
-
-    // if category becomes empty, delete it
-    if (updated[workoutType].length === 0) {
-      delete updated[workoutType];
+    if (isAuthenticated && user?.accountID) {
+      dispatch(fetchSavedWorkouts(user.accountID));
     }
+  }, [dispatch, isAuthenticated, user]);
 
-    setSavedWorkouts(updated);
-    localStorage.setItem("savedWorkouts", JSON.stringify(updated));
+  const handleRemove = async (documentId) => {
+    try {
+      await dispatch(deleteSavedWorkout(documentId)).unwrap();
+      toast.success("Workout removed successfully");
+    } catch (err) {
+      console.error("Failed to remove workout:", err);
+      toast.error("Failed to remove workout");
+    }
   };
 
-  const categories = Object.keys(savedWorkouts);
+  // Group workouts by bodypart
+  const groupedWorkouts = workouts.reduce((acc, workout) => {
+    const type = workout.bodypart || "Others";
+    if (!acc[type]) acc[type] = [];
+    acc[type].push(workout);
+    return acc;
+  }, {});
+
+  const categories = Object.keys(groupedWorkouts);
+
+  if (!isAuthenticated) {
+    return (
+      <div className={styles.pageContainer}>
+        <h1 className={styles.title}>Your Saved Workouts</h1>
+        <p className={styles.emptyText}>Please login to view your saved workouts.</p>
+      </div>
+    );
+  }
+
+  if (loading && workouts.length === 0) {
+    return (
+      <div className={styles.pageContainer}>
+        <h1 className={styles.title}>Your Saved Workouts</h1>
+        <div className={styles.loading}>Loading saved workouts...</div>
+      </div>
+    );
+  }
 
   return (
     <div className={styles.pageContainer}>
@@ -51,24 +77,25 @@ const SavedWorkouts = () => {
             </h2>
 
             <div className={styles.grid}>
-              {savedWorkouts[type].map((exercise, index) => (
-                <div key={index} className={styles.card}>
+              {groupedWorkouts[type].map((workout) => (
+                <div key={workout.$id} className={styles.card}>
                   <img
-                    src={exercise.gifUrl}
-                    alt={exercise.name}
+                    src={workout.gifURL}
+                    alt={workout.workoutName}
                     className={styles.image}
                   />
                   <div className={styles.cardContent}>
-                    <h3 className={styles.exerciseName}>{exercise.name}</h3>
+                    <h3 className={styles.exerciseName}>{workout.workoutName}</h3>
                     <p className={styles.subText}>
-                      {exercise.target} • {exercise.equipment}
+                      {workout.targetMuscles} • {workout.equipment}
                     </p>
 
                     <button
-                      onClick={() => handleRemove(type, exercise.name)}
+                      onClick={() => handleRemove(workout.$id)}
                       className={styles.removeButton}
+                      disabled={loading}
                     >
-                      Remove
+                      {loading ? "Removing..." : "Remove"}
                     </button>
                   </div>
                 </div>

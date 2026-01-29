@@ -14,3 +14,15 @@
 .badge strong {
   font-size: 1.4rem;
 }
+
+.blue {
+  background: var(--blue);
+}
+
+.pink {
+  background: var(--pink);
+}
+
+.orange {
+  background: var(--orange);
+}

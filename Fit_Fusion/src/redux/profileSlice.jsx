@@ -1,45 +1,102 @@
-/*
-  Redux Slice: profileSlice
-  Purpose: Holds user's profile information and provides reducers to
-           update fields, set the profile picture, and persist the
-           profile to `localStorage` via `saveProfile`.
-  Notes:
-  - Initializes from `localStorage` key `userProfile` when available.
-*/
-import { createSlice } from "@reduxjs/toolkit";
+import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
+import { updateCurrentUser, updateProfilePicture } from "../services/appwrite";
 
 const initialState = {
-  name: "Nikhil Goswami",
-  age: "25",
-  height: "165",
-  weight: "90",
-  goalWeight: "70",
-  bodyFat: "20.5",
-  primaryGoal: "Weight Loss",
-  targetDate: "2025-12-31",
-  weeklyWorkouts: "5",
-  dailyCalories: "2100",
-  sleepTarget: "8",
-  waterIntake: "3.5",
-  profilePic:
-    "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+  profile: null,
+  loading: false,
+  error: null,
 };
+
+export const updateProfileAsync = createAsyncThunk(
+  "profile/updateProfile",
+  async (profileData, { rejectWithValue }) => {
+    try {
+      const updatedUser = await updateCurrentUser(profileData);
+      return updatedUser;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
+export const updateProfilePicAsync = createAsyncThunk(
+  "profile/updateProfilePic",
+  async ({ file, userId }, { rejectWithValue }) => {
+    try {
+      const updatedUser = await updateProfilePicture(file, userId);
+      return updatedUser;
+    } catch (error) {
+      return rejectWithValue(error.message);
+    }
+  }
+);
+
+
 
 const profileSlice = createSlice({
   name: "profile",
-  initialState: JSON.parse(localStorage.getItem("userProfile")) || initialState,
+  initialState,
   reducers: {
-    updateProfile: (state, action) => {
-      return { ...state, ...action.payload };
+    setProfile: (state, action) => {
+      const payload = action.payload;
+      // Map fullName to name for UI consistency if coming from backend
+      if (payload.fullName && !payload.name) {
+        payload.name = payload.fullName;
+      }
+      // Merge to support partial updates and hydration
+      state.profile = { ...state.profile, ...payload };
     },
     setProfilePic: (state, action) => {
-      state.profilePic = action.payload;
+      if (state.profile) {
+        state.profile.profilePic = action.payload;
+      }
     },
-    saveProfile: (state) => {
-      localStorage.setItem("userProfile", JSON.stringify(state));
-    },
+  },
+  extraReducers: (builder) => {
+    builder
+      .addCase(updateProfileAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateProfileAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        const payload = action.payload;
+        // Map fullName to name
+        if (payload.fullName && !payload.name) {
+            payload.name = payload.fullName;
+        }
+
+        if (state.profile) {
+            Object.assign(state.profile, payload);
+        } else {
+            state.profile = payload;
+        }
+      })
+      .addCase(updateProfileAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      })
+      .addCase(updateProfilePicAsync.pending, (state) => {
+        state.loading = true;
+        state.error = null;
+      })
+      .addCase(updateProfilePicAsync.fulfilled, (state, action) => {
+        state.loading = false;
+        state.profile = action.payload;
+      })
+      .addCase(updateProfilePicAsync.rejected, (state, action) => {
+        state.loading = false;
+        state.error = action.payload;
+      });
   },
 });
 
-export const { updateProfile, saveProfile, setProfilePic } = profileSlice.actions;
+export const { setProfile, setProfilePic } = profileSlice.actions;
+
+export const selectProfile = (state) => state.profile.profile;
+export const selectProfileLoading = (state) => state.profile.loading;
+export const selectProfileError = (state) => state.profile.error;
+
+
 export default profileSlice.reducer;

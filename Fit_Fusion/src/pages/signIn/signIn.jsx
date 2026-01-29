@@ -1,13 +1,27 @@
 import { useState } from "react";
 import styles from "./signIn.module.css";
 import StatBadge from "../../components/statBadge/badge";
-import { loginUser } from "../../services/appwrite";
+import { loginUser, getCurrentUser } from "../../services/appwrite";
+import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/userContext.jsx";
+import { toast } from "react-toastify";
+import logo from "../../assets/logo.png";
 
 export default function SignIn() {
+  // State for form inputs
   const [form, setForm] = useState({
     email: "",
     password: ""
   });
+
+  // State for loading
+  const [isLoading, setIsLoading] = useState(false);
+
+  // Get navigation function
+  const navigate = useNavigate();
+
+  // Get setUser function from context to update global user state
+  const { setUser } = useUser();
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -20,13 +34,35 @@ export default function SignIn() {
   const handleSignIn = async (e) => {
     e.preventDefault();
 
+    // Validate form inputs
+    if (!form.email || !form.password) {
+      toast.error("Please fill in all fields!");
+      return;
+    }
+
+    setIsLoading(true);
+
     try {
-      const session = await loginUser(form);
-      console.log("Login successful:", session);
-      // You can add navigation or state management here after successful login
+      // Step 1: Login user
+      await loginUser(form);
+
+      // Step 2: Get current user data
+      const currentUser = await getCurrentUser();
+
+      // Step 3: Update global user state
+      setUser(currentUser);
+
+      // Step 4: Show success message
+      toast.success(`Welcome back, ${currentUser.fullName}!`);
+
+      // Step 5: Navigate to profile page
+      navigate("/profile");
     } catch (error) {
+      // Show error message
       console.error("Login failed:", error.message);
-      alert(`Login failed: ${error.message}`);
+      toast.error(`Login failed: ${error.message}`);
+    } finally {
+      setIsLoading(false);
     }
   };
 
@@ -35,8 +71,7 @@ export default function SignIn() {
       {/* Left Section */}
       <section className={styles.left}>
         <header className={styles.brand}>
-          <span className={styles.logo}>🏋️</span>
-          <span className={styles.brandName}>FITFREAK</span>
+          <img src={logo} alt="FitFreak Logo" className={styles.logo} />
         </header>
 
         <div className={styles.stats}>
@@ -45,10 +80,10 @@ export default function SignIn() {
           <StatBadge color="orange" value="3.5L" label="Water" />
         </div>
 
-        <h1 className={styles.heading}>
-          Track Your Progress.
-          <span> Achieve Your Goals.</span>
-        </h1>
+        <div className={styles.heading}>
+          <h1>Track Your Progress.</h1>
+          <h1>Achieve Your Goals.</h1>
+        </div>
 
         <p className={styles.subText}>
           Join thousands of athletes tracking workouts, nutrition, and daily
@@ -82,7 +117,13 @@ export default function SignIn() {
 
           <span className={styles.forgot}>Forgot password?</span>
 
-          <button className={styles.primaryBtn} onClick={handleSignIn}>Sign In</button>
+          <button 
+            className={styles.primaryBtn} 
+            onClick={handleSignIn}
+            disabled={isLoading}
+          >
+            {isLoading ? "Signing In..." : "Sign In"}
+          </button>
 
           <div className={styles.divider}>Or continue with</div>
 

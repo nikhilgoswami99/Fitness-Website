@@ -9,39 +9,53 @@
 import React from "react";
 import styles from "./editProfile.module.css";
 import { useSelector, useDispatch } from "react-redux";
-import { updateProfile } from "../../redux/profileSlice";
+import { setProfile, selectProfile } from "../../redux/profileSlice";
 
 function EditProfile() {
   const dispatch = useDispatch();
 
   // ✅ Get current profile directly from Redux
-  const profile = useSelector((state) => state.profile);
+  const profile = useSelector(selectProfile);
+  
+  
+  if (!profile) return null;
 
   // ✅ Handle input changes — instantly update Redux state
   const handleChange = (e) => {
     const { id, value } = e.target;
-    
 
-    // Map input IDs to Redux keys
-    const map = {
-      name: "name",
-      age: "age",
-      height: "height",
-      weight: "weight",
-      goalWeight: "goalWeight",
-      fat: "bodyFat",
-      goal: "primaryGoal",
-      date: "targetDate",
-      weeklyWorkouts: "weeklyWorkouts",
-      calories: "dailyCalories",
-      sleep: "sleepTarget",
-      water: "waterIntake",
+    // Map input IDs to Redux keys and their expected types
+    const fieldConfig = {
+      name: { key: "name", type: "string", maxLength: 50 },
+      age: { key: "age", type: "integer", max: 150 },
+      height: { key: "height", type: "integer" },
+      weight: { key: "weight", type: "integer" },
+      goalWeight: { key: "goalWeight", type: "integer" },
+      fat: { key: "bodyFat", type: "integer" }, // Schema says integer
+      goal: { key: "primaryGoal", type: "string", maxLength: 50 },
+      date: { key: "targetDate", type: "datetime" }, 
+      weeklyWorkouts: { key: "weeklyWorkouts", type: "integer" },
+      calories: { key: "dailyCalories", type: "integer" },
+      sleep: { key: "sleepTarget", type: "integer" },
+      water: { key: "waterIntake", type: "integer" }, // Schema says integer
     };
 
-    const key = map[id];
-    if (!key) return;
+    const config = fieldConfig[id];
+    if (!config) return;
 
-    dispatch(updateProfile({ [key]: value }));
+    let processedValue = value;
+
+    if (config.type === "integer") {
+      processedValue = value === "" ? "" : parseInt(value, 10);
+      if (isNaN(processedValue)) processedValue = "";
+    }
+    
+    // Enforce Max Length for strings
+    if (config.type === "string" && config.maxLength && value.length > config.maxLength) {
+        return; // Prevent update if too long
+    }
+
+    dispatch(setProfile({ [config.key]: processedValue }));
   };
 
   // Helper to avoid undefined values

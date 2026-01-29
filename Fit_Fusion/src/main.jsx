@@ -20,6 +20,7 @@ import Workouts from "./pages/workouts/workouts.jsx";
 import SavedWorkouts from "./pages/savedWorkouts/savedWorkouts.jsx";
 import SignIn from "./pages/signIn/signIn.jsx";
 import SignUp from "./pages/signUp/signUp.jsx";
+import ProtectedRoute from "./components/protectedRoutes/ProtectedRoute.jsx";
 
 const router = createBrowserRouter([
   {
@@ -32,11 +33,19 @@ const router = createBrowserRouter([
       },
       {
         path: "diet",
-        element: <Diet />,
+        element: (
+          <ProtectedRoute>
+            <Diet />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "profile",
-        element: <Profile />,
+        element: (
+          <ProtectedRoute>
+            <Profile />
+          </ProtectedRoute>
+        ),
       },
       {
         path: "workouts/:workoutType",
@@ -44,7 +53,11 @@ const router = createBrowserRouter([
       },
       {
         path: "savedWorkouts",
-        element: <SavedWorkouts />,
+        element: (
+          <ProtectedRoute>
+            <SavedWorkouts />
+          </ProtectedRoute>
+        ),
       },
     ],
   },
