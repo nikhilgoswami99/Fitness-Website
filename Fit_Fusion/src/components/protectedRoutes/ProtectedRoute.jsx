@@ -24,7 +24,7 @@ function ProtectedRoute({ children }) {
         autoClose: 3000,
       });
     }
-  }, [isAuthenticated]);
+  }, [isAuthenticated, isLoading]); // Added isLoading to dependencies
 
   // Show loading while checking authentication
   if (isLoading) {
@@ -44,7 +44,7 @@ function ProtectedRoute({ children }) {
 
   // If user is NOT logged in, redirect to login
   if (!isAuthenticated) {
-    return <Navigate to="/" replace />;
+    return <Navigate to="/login" replace />;
   }
 
   // If user IS logged in, show the protected page

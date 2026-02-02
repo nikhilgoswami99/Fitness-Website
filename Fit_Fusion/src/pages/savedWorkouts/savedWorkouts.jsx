@@ -19,6 +19,7 @@ const SavedWorkouts = () => {
   const { user, isAuthenticated } = useUser();
   const { workouts, loading, error } = useSelector((state) => state.savedWorkouts);
 
+
   useEffect(() => {
     if (isAuthenticated && user?.accountID) {
       dispatch(fetchSavedWorkouts(user.accountID));
@@ -42,6 +43,7 @@ const SavedWorkouts = () => {
     acc[type].push(workout);
     return acc;
   }, {});
+
 
   const categories = Object.keys(groupedWorkouts);
 
@@ -78,6 +80,7 @@ const SavedWorkouts = () => {
 
             <div className={styles.grid}>
               {groupedWorkouts[type].map((workout) => (
+                console.log(workout.gifURL),
                 <div key={workout.$id} className={styles.card}>
                   <img
                     src={workout.gifURL}

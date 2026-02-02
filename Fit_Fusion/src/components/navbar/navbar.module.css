@@ -6,21 +6,25 @@
 */
 
 .navbar {
-    padding: 1rem;
+    padding: 0.8rem 2rem;
     display: flex;
     align-items: center;
-    justify-content: center;
-    justify-self: center;
+    justify-content: space-between;
     flex-wrap: wrap;
     gap: 2rem;
     background-color: rgb(38, 39, 59);
     position: static;
     top: 0;
-    margin-top: 2rem;
+    right: 0;
     z-index: 10;
-    width: 40%;
-    border-radius: 10px;
+    width: 100%;
     border: 1px rgb(56, 65, 82) solid;
+}
+
+.logoLink {
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .navLinks {
@@ -55,15 +59,22 @@
     cursor: pointer;
 }
 
-.signOut {
-    padding: 0.5rem;
-    color: white;
-    border: none;
-    font-size: medium;
-    font-weight: bold;
-    border-radius: 10px;
-    cursor: pointer;
-    background-color: rgb(53, 135, 237);
+.logoutBtn {
+  background-color: rgb(27, 28, 48);
+  color: rgb(240, 52, 52);
+  border-radius: 5px;
+  padding: 0.5rem 1rem;
+  border: 1px solid rgb(240, 52, 52);
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.logoutBtn:hover {
+  background-color: rgb(240, 52, 52);
+  color: white;
 }
 
 /* ====================================== */

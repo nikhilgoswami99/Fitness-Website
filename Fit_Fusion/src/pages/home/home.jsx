@@ -15,29 +15,25 @@ import { useDispatch, useSelector } from "react-redux";
 import workoutTypes from "../../../public/exerciseTypes";
 import Chart from "../../components/workoutChart/chart";
 import { useNavigate } from "react-router-dom";
+import { useUser } from "../../context/userContext.jsx";
+import { MdFitnessCenter, MdLocalFireDepartment, MdWaterDrop, MdHotel } from "react-icons/md";
 
 function Home() {
   const navigate = useNavigate();
+  const { isAuthenticated } = useUser();
+  const data = useSelector((state) => state.profile);
 
-  const profile = useSelector((state) => state.profile);
-  
-
-  //   if (!profile.profile) {
-  //   return <div className={styles.loading}>Loading Profile...</div>;
-  // }
-
-  console.log(profile.profile);
-  
-
+  // If user is logged in but data hasn't arrived in Redux yet, show loading
+  if (isAuthenticated && !data.profile) {
+    return <div className={styles.loading}>Loading Profile...</div>;
+  }
   
 
   let handleCardClick = (workoutType) => {
     navigate(`workouts/${workoutType}`);
   };
 
-  let navigateToSavedWorkouts = () => {
-    navigate(`savedWorkouts`);
-  }
+
 
   const cardColors = [
     "rgb(51, 134, 238)",
@@ -46,20 +42,12 @@ function Home() {
     "rgb(39, 198, 219)",
   ];
 
-const workoutDays = [
-  { label: "Push – Chest, Shoulders, Triceps", time: "Monday" },
-  { label: "Pull – Back, Biceps", time: "Tuesday" },
-  { label: "Legs – Quads, Hamstrings, Glutes, Calves", time: "Wednesday" },
-  { label: "Rest / Active Recovery (Light cardio / Stretching)", time: "Thursday" },
-  { label: "Push – Chest, Shoulders, Triceps", time: "Friday" },
-  { label: "Pull – Back, Biceps", time: "Saturday" },
-  { label: "Legs + Core", time: "Sunday" },
-];
 
 
-  const goalProgress = Math.round(
-    ((profile.weight - profile.goalWeight) / profile.weight) * 100
-  );
+
+  const goalProgress = data.profile?.weight && data.profile?.goalWeight
+    ? Math.round(((data.profile.weight - data.profile.goalWeight) / data.profile.weight) * 100)
+    : 0;
 
   return (
     <>
@@ -67,43 +55,57 @@ const workoutDays = [
         <div className={styles.mainContent}>
           
           {/* ==== MY ACTIVITIES ==== */}
-          <div className={styles.myActivity}>
-            <h2 className={styles.heading}>My Activities</h2>
-            <div className={styles.activityContainer}>
-              <div
-                style={{ backgroundColor: `${cardColors[0]}` }}
-                className={styles.activityCard}
-              >
-                <p className={styles.goalCompleted}>{profile.weeklyWorkouts}</p>
-                <p>Weekly Workouts</p>
-                <p>Target: {profile.weeklyWorkouts}/7</p>
-              </div>
-              <div
-                style={{ backgroundColor: `${cardColors[1]}` }}
-                className={styles.activityCard}
-              >
-                <p className={styles.goalCompleted}>{profile.dailyCalories}</p>
-                <p>Calories / Day</p>
-                <p>Goal: {profile.primaryGoal}</p>
-              </div>
-              <div
-                style={{ backgroundColor: `${cardColors[2]}` }}
-                className={styles.activityCard}
-              >
-                <p className={styles.goalCompleted}>{profile.waterIntake}L</p>
-                <p>Water / Day</p>
-                <p>Stay Hydrated 💧</p>
-              </div>
-              <div
-                style={{ backgroundColor: `${cardColors[3]}` }}
-                className={styles.activityCard}
-              >
-                <p className={styles.goalCompleted}>{profile.sleepTarget}h</p>
-                <p>Sleep Target</p>
-                <p>Goal Progress: {goalProgress}%</p>
+          {isAuthenticated && data.profile && (
+            <div className={styles.myActivity}>
+              <h2 className={styles.heading}>My Activities</h2>
+              <div className={styles.activityContainer}>
+                <div
+                  style={{ backgroundColor: `${cardColors[0]}` }}
+                  className={styles.activityCard}
+                >
+                  <div className={styles.cardHeader}>
+                    <MdFitnessCenter className={styles.cardIcon} />
+                    <span className={styles.goalCompleted}>{data.profile.weeklyWorkouts}</span>
+                  </div>
+                  <p className={styles.activityName}>Weekly Workouts</p>
+                  <p>Target: {data.profile.weeklyWorkouts}/7</p>
+                </div>
+                <div
+                  style={{ backgroundColor: `${cardColors[1]}` }}
+                  className={styles.activityCard}
+                >
+                  <div className={styles.cardHeader}>
+                    <MdLocalFireDepartment className={styles.cardIcon} />
+                    <span className={styles.goalCompleted}>{data.profile.dailyCalories}</span>
+                  </div>
+                  <p className={styles.activityName}>Calories / Day</p>
+                  <p>Goal: {data.profile.primaryGoal}</p>
+                </div>
+                <div
+                  style={{ backgroundColor: `${cardColors[2]}` }}
+                  className={styles.activityCard}
+                >
+                  <div className={styles.cardHeader}>
+                    <MdWaterDrop className={styles.cardIcon} />
+                    <span className={styles.goalCompleted}>{data.profile.waterIntake}L</span>
+                  </div>
+                  <p className={styles.activityName}>Water / Day</p>
+                  <p>Stay Hydrated 💧</p>
+                </div>
+                <div
+                  style={{ backgroundColor: `${cardColors[3]}` }}
+                  className={styles.activityCard}
+                >
+                  <div className={styles.cardHeader}>
+                    <MdHotel className={styles.cardIcon} />
+                    <span className={styles.goalCompleted}>{data.profile.sleepTarget}h</span>
+                  </div>
+                  <p className={styles.activityName}>Sleep Target</p>
+                  <p>Goal Progress: {goalProgress}%</p>
+                </div>
               </div>
             </div>
-          </div>
+          )}
 
           {/* ==== EXPLORE EXERCISES ==== */}
           <div className={styles.workoutSection}>
@@ -125,51 +127,7 @@ const workoutDays = [
         </div>
 
         {/* ==== PROFILE SECTION ==== */}
-        <div className={styles.profileSection}>
-          <div className={styles.myCardWrapper}>
-            <div className={styles.myCardProfile}>
-              <img
-                src={profile.profilePic||'https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png'}
-                alt="John Watson"
-                className={styles.myCardImage}
-              />
-              <div>
-                <h2 className={styles.myCardName}>{profile.name}</h2>
-                <p className={styles.myCardSubtitle}>{profile.age} Years Athlete</p>
-              </div>
-            </div>
-            <div className={styles.myCardStats}>
-              <div className={styles.myCardStat}>
-                <p className={styles.myCardWeightLabel}>Weight</p>
-                <p className={styles.myCardValue}>{profile.weight} kg</p>
-              </div>
-              <div className={styles.myCardStat}>
-                <p className={styles.myCardHeightLabel}>Height</p>
-                <p className={styles.myCardValue}>{profile.height} cm</p>
-              </div>
-              <div className={styles.myCardStat}>
-                <p className={styles.myCardGoalLabel}>Goal</p>
-                <p className={styles.myCardValue}>{profile.goalWeight} kg</p>
-              </div>
-            </div>
-          </div>
-
-          <div className={styles.planContainer}>
-            <div className={styles.header}>
-              <span className={styles.title}>Current Plan</span>
-              <span className={styles.status}>Active</span>
-            </div>
-            <div className={styles.planList}>
-              {workoutDays.map((day, idx) => (
-                <div key={idx} className={styles.planRow}>
-                  <span className={styles.planLabel}>{day.label}</span>
-                  <span className={styles.planTime}>{day.time}</span>
-                </div>
-              ))}
-            </div>
-            <button onClick={navigateToSavedWorkouts} className={styles.fullPlanButton}>View Full Plan</button>
-          </div>
-        </div>
+        {/* Profile Section has been moved to Sidebar component */}
       </section>
 
       {/* ACTIVITY TRACKING SECTION */}

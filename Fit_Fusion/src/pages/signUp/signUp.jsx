@@ -1,7 +1,7 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./signUp.module.css";
 import { createUser, loginUser, getCurrentUser } from "../../services/appwrite";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../../context/userContext.jsx";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
@@ -21,7 +21,14 @@ export default function Signup() {
   const navigate = useNavigate();
 
   // Get setUser function from context to update global user state
-  const { setUser } = useUser();
+  const { setUser, isAuthenticated, isLoading: authLoading } = useUser();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (isAuthenticated && !authLoading) {
+      navigate("/");
+    }
+  }, [isAuthenticated, authLoading, navigate]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
@@ -82,22 +89,21 @@ export default function Signup() {
   return (
     <div className={styles.page}>
       {/* Header */}
-      <header className={styles.header}>
-        <img src={logo} alt="FitFreak Logo" className={styles.logo} />
-      </header>
-
+      
       {/* Main */}
       <main className={styles.main}>
         {/* Left Section */}
         <section className={styles.hero}>
+          <header className={styles.header}>
+            <img src={logo} alt="FitFreak Logo" className={styles.logo} />
+          </header>
           <h1>
-            Train like a <br />
-            <span>Champion.</span>
+            Train like a <span>Champion.</span>
           </h1>
 
           <p>
-            Join thousands of athletes tracking their progress,
-            crushing goals, and transforming their bodies with FitFreak.
+            Join thousands of athletes tracking their progress, crushing goals,
+            and transforming their bodies with FitFreak.
           </p>
 
           <div className={styles.features}>
@@ -131,43 +137,35 @@ export default function Signup() {
         {/* Right Section */}
         <section className={styles.card}>
           <h2>Create Account</h2>
-          <p className={styles.subtitle}>
-            Start your 30-day free trial. No credit card required.
-          </p>
+
 
           <form className={styles.form} onSubmit={handleSubmit}>
-            <label>
-              Full Name
-              <input
-                type="text"
-                name="fullName"
-                placeholder="John Doe"
-                value={form.fullName}
-                onChange={handleChange}
-              />
-            </label>
+            <label>Full Name</label>
+            <input
+              type="text"
+              name="fullName"
+              placeholder="John Doe"
+              value={form.fullName}
+              onChange={handleChange}
+            />
 
-            <label>
-              Email Address
-              <input
-                type="email"
-                name="email"
-                placeholder="john@example.com"
-                value={form.email}
-                onChange={handleChange}
-              />
-            </label>
+            <label>Email Address</label>
+            <input
+              type="email"
+              name="email"
+              placeholder="john@example.com"
+              value={form.email}
+              onChange={handleChange}
+            />
 
-            <label>
-              Password
-              <input
-                type="password"
-                name="password"
-                placeholder="••••••••"
-                value={form.password}
-                onChange={handleChange}
-              />
-            </label>
+            <label>Password</label>
+            <input
+              type="password"
+              name="password"
+              placeholder="••••••••"
+              value={form.password}
+              onChange={handleChange}
+            />
 
             {/* <div className={styles.checkbox}>
               <input type="checkbox" id="terms" />
@@ -177,15 +175,12 @@ export default function Signup() {
               </label>
             </div> */}
 
-            <button 
-              type="submit"
-              disabled={isLoading}
-            >
+            <button type="submit" disabled={isLoading}>
               {isLoading ? "Creating Account..." : "Create Account"}
             </button>
 
             <p className={styles.signin}>
-              Already have an account? <a href="#">Sign in here</a>
+              Already have an account? <Link to="/login">Sign in here</Link>
             </p>
           </form>
         </section>

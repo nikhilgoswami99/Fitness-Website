@@ -65,10 +65,7 @@ function Profile() {
       });
   };
 
-  // ✅ Navigate
-  const navigateToSavedWorkouts = () => {
-    navigate(`/savedWorkouts`);
-  };
+
 
   // ✅ Handle Logout
   const handleLogout = async () => {
@@ -157,9 +154,6 @@ function Profile() {
                 Save Changes
               </button>
             )}
-            <button onClick={handleLogout} className={styles.logoutBtn}>
-              Logout
-            </button>
           </div>
         </div>
       </div>
@@ -199,32 +193,7 @@ function Profile() {
         </div>
       )}
 
-      {/* ✅ Workout plans section */}
-      <div className={styles.myPlans}>
-        <h2 className={styles.planHeading}>My Workout Plans</h2>
-        <div className={styles.planCard}>
-          <div className={styles.planHeader}>
-            <h3 className={styles.title}>Push/Pull/Legs</h3>
-            <span className={styles.status}>Active</span>
-          </div>
-          <p className={styles.description}>
-            6-day split focusing on compound movements
-          </p>
-          <div className={styles.progressInfo}>
-            <span>Progress: 68%</span>
-            <span>Week 4/6</span>
-          </div>
-          <div className={styles.progressBar}>
-            <div className={styles.progressFill}></div>
-          </div>
-          <button
-            onClick={navigateToSavedWorkouts}
-            className={styles.continueBtn}
-          >
-            View Workout Plan
-          </button>
-        </div>
-      </div>
+
     </div>
   );
 }

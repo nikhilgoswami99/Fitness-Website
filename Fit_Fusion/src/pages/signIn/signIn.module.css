@@ -89,12 +89,14 @@
 }
 
 .card input {
-  background-color: rgb(56, 65, 82);
-  border: none;
+  background-color: rgb(27, 28, 48);
+  border: 1px solid #384152; 
   padding: 0.8rem;
   border-radius: 0.6rem;
   color: white;
 }
+
+
 
 .forgot {
   align-self: flex-end;
@@ -104,12 +106,13 @@
 }
 
 .primaryBtn {
-  background: var(--blue);
+  background: #FFC400;
   border: none;
-  padding: 0.9rem;
+  padding: 0.5rem;
   border-radius: 0.6rem;
-  color: white;
-  font-size: 1rem;
+  color: #0f1729;
+  font-size: 0.9rem;
+  font-weight: 600;
   cursor: pointer;
 }
 

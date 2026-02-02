@@ -25,7 +25,11 @@ import ProtectedRoute from "./components/protectedRoutes/ProtectedRoute.jsx";
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <App />,
+    element: (
+      <ProtectedRoute>
+        <App />
+      </ProtectedRoute>
+    ),
     children: [
       {
         path: "/",
@@ -33,19 +37,11 @@ const router = createBrowserRouter([
       },
       {
         path: "diet",
-        element: (
-          <ProtectedRoute>
-            <Diet />
-          </ProtectedRoute>
-        ),
+        element: <Diet />,
       },
       {
         path: "profile",
-        element: (
-          <ProtectedRoute>
-            <Profile />
-          </ProtectedRoute>
-        ),
+        element: <Profile />,
       },
       {
         path: "workouts/:workoutType",
@@ -53,11 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "savedWorkouts",
-        element: (
-          <ProtectedRoute>
-            <SavedWorkouts />
-          </ProtectedRoute>
-        ),
+        element: <SavedWorkouts />,
       },
     ],
   },

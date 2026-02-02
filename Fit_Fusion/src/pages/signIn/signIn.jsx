@@ -1,8 +1,8 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./signIn.module.css";
 import StatBadge from "../../components/statBadge/badge";
 import { loginUser, getCurrentUser } from "../../services/appwrite";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../../context/userContext.jsx";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
@@ -21,7 +21,14 @@ export default function SignIn() {
   const navigate = useNavigate();
 
   // Get setUser function from context to update global user state
-  const { setUser } = useUser();
+  const { setUser, isAuthenticated, isLoading: authLoading } = useUser();
+
+  // Redirect if already logged in
+  useEffect(() => {
+    if (isAuthenticated && !authLoading) {
+      navigate("/");
+    }
+  }, [isAuthenticated, authLoading, navigate]);
 
   const handleInput = (e) => {
     const { name, value } = e.target;
@@ -125,15 +132,9 @@ export default function SignIn() {
             {isLoading ? "Signing In..." : "Sign In"}
           </button>
 
-          <div className={styles.divider}>Or continue with</div>
-
-          <div className={styles.socials}>
-            <button>Google</button>
-            <button>Facebook</button>
-          </div>
 
           <p className={styles.signup}>
-            Don't have an account? <span>Sign up for free</span>
+            Don't have an account? <Link to="/register">Sign up for free</Link>
           </p>
         </div>
       </section>

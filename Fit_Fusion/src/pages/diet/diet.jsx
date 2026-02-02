@@ -8,6 +8,7 @@
   - `handleDeleteFoodItem` mutates `meals` state and persists changes.
 */
 import React, { useEffect, useState } from "react";
+import { createPortal } from "react-dom";
 import styles from "./diet.module.css";
 
 import { MdDeleteForever } from "react-icons/md";
@@ -104,17 +105,22 @@ useEffect(() => {
   return (
     <>
       <div className={styles.dietPage}>
-        {edit && (
-          <DietEdit
-            handleEdit={setEdit}
-            planName={planName}
-            setMeals={setMeals}
-          />
-        )}
-        <h1 className={styles.heading}>5 Course Meals</h1>
+        {edit &&
+          createPortal(
+            <DietEdit
+              handleEdit={setEdit}
+              planName={planName}
+              setMeals={setMeals}
+            />,
+            document.body
+          )}
+        <header className={styles.pageHeader}>
+          <h1 className={styles.heading}>Diet Plan</h1>
+          <p className={styles.subtitle}>Track your nutrition and meals</p>
+        </header>
         <div className={styles.dietPlans}>
           <div className={styles.plan}>
-            <div>
+            <div className={styles.planHeader}>
               <img className={styles.planImages} src={breakfastImg} alt="" />
               <MdEdit
                 onClick={handleEdit}
@@ -160,7 +166,7 @@ useEffect(() => {
             </span> */}
           </div>
           <div className={styles.plan}>
-            <div>
+            <div className={styles.planHeader}>
               <img className={styles.planImages} src={lunchImg} alt="" />
               <MdEdit
                 onClick={handleEdit}
@@ -206,7 +212,7 @@ useEffect(() => {
             </span> */}
           </div>
           <div className={styles.plan}>
-            <div>
+            <div className={styles.planHeader}>
               <img className={styles.planImages} src={snackImg} alt="" />
               <MdEdit
                 onClick={handleEdit}
@@ -252,7 +258,7 @@ useEffect(() => {
             </span> */}
           </div>
           <div className={styles.plan}>
-            <div>
+            <div className={styles.planHeader}>
               <img className={styles.planImages} src={dinnerImg} alt="" />
               <MdEdit
                 onClick={handleEdit}

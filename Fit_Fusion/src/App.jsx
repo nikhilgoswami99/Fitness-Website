@@ -6,9 +6,10 @@
   - Keep this component minimal; layout-only responsibilities.
   - ToastContainer added for global notifications.
 */
-import './App.css'
+import styles from './App.module.css'
 import {Outlet} from 'react-router-dom'
 import Navbar from './components/navbar/navbar'
+import Sidebar from './components/sidebar/sidebar'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css'
 
@@ -18,7 +19,7 @@ import { useUser } from './context/userContext';
 import { setProfile } from './redux/profileSlice';
 
 function App() {
-  const { user, isLoading } = useUser();
+  const { user, isLoading, isAuthenticated } = useUser();
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -27,10 +28,21 @@ function App() {
     }
   }, [user, dispatch]);
 
+  if (isLoading) {
+    return <div className={styles.loading}>Loading...</div>;
+  }
+
   return (
-    <>
+    <div className={styles.appContainer}>
       <Navbar/>
-      <Outlet/>
+      <div className={styles.mainBody}>
+        {isAuthenticated && <Sidebar/>}
+        <div className={styles.contentArea}>
+          <Outlet/>
+        </div>
+        
+      </div>
+      
       {/* Toast Container for notifications */}
       <ToastContainer 
         position="top-right"
@@ -44,7 +56,7 @@ function App() {
         pauseOnHover
         theme="dark"
       />
-    </>
+    </div>
   )
 }
 

@@ -1,0 +1,62 @@
+
+/* Layout Styles */
+.appContainer {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.mainBody {
+  display: flex;
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow: hidden;
+}
+
+.contentArea {
+  flex: 1;
+  min-height: 0;
+  width: 100%;
+  overflow-y: auto;
+}
+
+/* Sidebar should rely on its own width (30vw), but we should ensure it doesn't shrink */
+.sidebarWrapper {
+   /* wrapper if needed, or apply flex properties to the component/container */
+   flex-shrink: 0;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+  .mainBody {
+    flex-direction: column;
+    padding: 1.5rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .mainBody {
+    padding: 1rem;
+    gap: 1.5rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .mainBody {
+    padding: 0.5rem;
+    gap: 1rem;
+  }
+}
+
+.loading {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  width: 100vw;
+  background-color: #1b1c30;
+  color: white;
+  font-size: 1.5rem;
+}
