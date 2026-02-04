@@ -16,15 +16,10 @@ import { useEffect, useState } from "react";
 function ProtectedRoute({ children }) {
   // Get user authentication status from context
   const { isAuthenticated, isLoading } = useUser();
-  // Check for authentication status and show toast if needed
-  useEffect(() => {
-    if (!isAuthenticated && !isLoading) {
-      toast.error("Please login to access this page!", {
-        position: "top-right",
-        autoClose: 3000,
-      });
-    }
-  }, [isAuthenticated, isLoading]); // Added isLoading to dependencies
+  // Check for authentication status
+  // Note: We removed the toast notification here to avoid race conditions 
+  // where a user logs in, navigates, and sees a "Please login" error momentarily.
+
 
   // Show loading while checking authentication
   if (isLoading) {
