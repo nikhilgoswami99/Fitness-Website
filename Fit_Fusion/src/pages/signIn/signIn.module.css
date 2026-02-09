@@ -1,5 +1,3 @@
-
-
 /* BASE STYLES (Mobile First) */
 .container {
   min-height: 100vh;
@@ -8,7 +6,9 @@
   padding: 1.5rem 1rem;
   gap: 2.5rem;
   color: var(--text-main);
-  background-color: var(--background); /* Assuming background var exists, fallback handled by parent usually */
+  background-color: var(
+    --background
+  ); /* Assuming background var exists, fallback handled by parent usually */
   justify-content: center;
 }
 
@@ -80,7 +80,7 @@
   background-color: #26273b;
   border: 1px solid #384152;
   width: 100%;
-  max-width: 28rem; 
+  max-width: 28rem;
   padding: 1.5rem;
   border-radius: 1.2rem;
   display: flex;
@@ -106,7 +106,7 @@
 
 .card input {
   background-color: rgb(27, 28, 48);
-  border: 1px solid #384152; 
+  border: 1px solid #384152;
   padding: 0.8rem;
   border-radius: 0.6rem;
   color: white;
@@ -122,13 +122,14 @@
 
 .forgot {
   align-self: flex-end;
-  font-size: 0.8rem;
-  color: var(--blue);
+  font-size: 1rem;
+  color: #ffc400;
   cursor: pointer;
+  font-weight: 600;
 }
 
 .primaryBtn {
-  background: #FFC400;
+  background: #ffc400;
   border: none;
   padding: 0.8rem;
   border-radius: 0.6rem;
@@ -170,16 +171,16 @@
 }
 
 .signup {
-  font-size: 0.9rem;
+  font-size: 1rem;
   text-align: center;
   margin-top: 1rem;
 }
 
 .signup a {
-  color: var(--blue);
+  color: #ffc400;
   cursor: pointer;
   text-decoration: none;
-  font-weight: 500;
+  font-weight: 600;
 }
 
 /* VIEWPORT: TABLET (Min-width: 768px) */
@@ -201,7 +202,7 @@
     padding: 2.5rem;
     gap: 1.2rem;
   }
-  
+
   .card h2 {
     font-size: 1.8rem;
   }
@@ -251,7 +252,7 @@
     height: 100%;
     order: unset;
   }
-  
+
   .card {
     width: min(90%, 28rem);
   }

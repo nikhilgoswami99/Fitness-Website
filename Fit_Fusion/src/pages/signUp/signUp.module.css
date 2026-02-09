@@ -187,12 +187,13 @@
 .signin {
   text-align: center;
   margin-top: 0.5rem;
-  font-size: 0.9rem;
+  font-size: 1rem;
 }
 
 .signin a {
-  color: var(--blue);
+  color: #FFC400;
   text-decoration: none;
+  font-weight: 600;
 }
 
 /* TABLET (Min-width: 768px) */
