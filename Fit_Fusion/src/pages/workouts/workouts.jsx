@@ -34,20 +34,17 @@ const ExercisesGrid = () => {
     setIsLoading(true);
     const options = {
       method: "GET",
-      url: `https://exercisedb.p.rapidapi.com/exercises/bodyPart/${workoutType}`,
+      url: `https://exercisedb.dev/api/v1/bodyparts/${encodeURIComponent(workoutType)}/exercises`,
       params: {
         limit: limit.toString(),
         offset: ((pageNum - 1) * limit).toString(),
-      },
-      headers: {
-        "x-rapidapi-key": "41ef75cbcamsh58da2adee279124p18cba7jsn021699ab6e69",
-        "x-rapidapi-host": "exercisedb.p.rapidapi.com",
       },
     };
 
     try {
       const response = await axios.request(options);
-      setDataArr(response.data);
+      
+      setDataArr(response.data.data);
     } catch (error) {
       console.error("Error fetching data", error);
       toast.error("Failed to fetch exercises");
@@ -59,6 +56,7 @@ const ExercisesGrid = () => {
   useEffect(() => {
     bodyPartData(workoutType, pageNum);
   }, [workoutType, pageNum]);
+  
 
   // Fetch saved workouts when user is authenticated
   useEffect(() => {
