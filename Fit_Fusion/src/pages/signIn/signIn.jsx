@@ -6,6 +6,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../../context/userContext.jsx";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
+import { FiMail, FiLock } from "react-icons/fi";
 
 export default function SignIn() {
   // State for form inputs
@@ -92,37 +93,38 @@ export default function SignIn() {
           <h1>Achieve Your Goals.</h1>
         </div>
 
-        <p className={styles.subText}>
-          Join thousands of athletes tracking workouts, nutrition, and daily
-          fitness goals with FitFreak.
-        </p>
       </section>
 
       {/* Right Section */}
       <section className={styles.right}>
         <div className={styles.card}>
           <h2>Welcome Back</h2>
-          <p>Please enter your details to sign in.</p>
 
-          <label>Email Address</label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleInput}
-            placeholder="athlete@fitfreak.com"
-          />
+          <label>Email</label>
+          <div className={styles.inputGroup}>
+            <FiMail className={styles.inputIcon} />
+            <input
+              type="email"
+              name="email"
+              value={form.email}
+              onChange={handleInput}
+              placeholder="Enter your email"
+            />
+          </div>
 
           <label>Password</label>
-          <input
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleInput}
-            placeholder="••••••••"
-          />
+          <div className={styles.inputGroup}>
+            <FiLock className={styles.inputIcon} />
+            <input
+              type="password"
+              name="password"
+              value={form.password}
+              onChange={handleInput}
+              placeholder="Enter your password"
+            />
+          </div>
 
-          <span className={styles.forgot}>Forgot password?</span>
+
 
           <button 
             className={styles.primaryBtn} 
@@ -134,7 +136,7 @@ export default function SignIn() {
 
 
           <p className={styles.signup}>
-            Don't have an account? <Link to="/register">Sign up for free</Link>
+            Don't have an account? <Link to="/register">Sign up</Link>
           </p>
         </div>
       </section>

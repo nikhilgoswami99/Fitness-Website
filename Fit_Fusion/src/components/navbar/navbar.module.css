@@ -64,7 +64,7 @@
   color: rgb(240, 52, 52);
   border-radius: 5px;
   padding: 0.5rem 0.8rem;
-  border: 1px solid rgb(240, 52, 52);
+  border: 1px solid rgb(240, 52, 52) !important;
   font-weight: bold;
   cursor: pointer;
   display: flex;

@@ -59,13 +59,7 @@
   color: var(--blue);
 }
 
-.subText {
-  max-width: 38ch;
-  color: var(--text-muted);
-  font-size: 1rem;
-  text-align: center;
-  margin: 0 auto;
-}
+
 
 /* RIGHT SECTION (Form) */
 .right {
@@ -82,7 +76,7 @@
   width: 100%;
   max-width: 28rem;
   padding: 1.5rem;
-  border-radius: 1.2rem;
+  border-radius: 0.75rem;
   display: flex;
   flex-direction: column;
   gap: 1rem;
@@ -101,39 +95,52 @@
 
 .card label {
   font-size: 1rem;
-  color: rgb(136, 136, 156);
-}
-
-.card input {
-  background-color: rgb(27, 28, 48);
-  border: 1px solid #384152;
-  padding: 0.8rem;
-  border-radius: 0.6rem;
   color: white;
-  outline: none;
-  font-size: 1rem;
-  width: 100%;
-  box-sizing: border-box; /* Important for padding inputs */
-}
-
-.card input:focus {
-  border-color: var(--blue);
-}
-
-.forgot {
-  align-self: flex-end;
-  font-size: 1rem;
-  color: #ffc400;
-  cursor: pointer;
   font-weight: 600;
 }
 
-.primaryBtn {
-  background: #ffc400;
-  border: none;
-  padding: 0.8rem;
+.card input {
+  background-color: #1b1c30;
+  border: 1px solid #384152;
+  padding: 0.5rem 0.5rem 0.5rem 2.5rem;
   border-radius: 0.6rem;
-  color: #0f1729;
+  color: white;
+  font-size: 1rem;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.inputGroup {
+  position: relative;
+  width: 100%;
+}
+
+.inputIcon {
+  position: absolute;
+  top: 50%;
+  left: 0.8rem;
+  transform: translateY(-50%);
+  color: #9a9fa7;
+  font-size: 1.1rem;
+  pointer-events: none;
+}
+
+.card input::placeholder {
+  color: #9a9fa7;
+  font-weight: 400;
+  font-size: 0.9rem;
+}
+
+.card input:focus {
+  outline: 2px solid var(--blue);
+}
+
+.primaryBtn {
+  /* background: #ffc400; */
+  border: none;
+  padding: 0.5rem;
+  border-radius: 0.6rem;
+  color: white;
   font-size: 1rem;
   font-weight: 600;
   cursor: pointer;
@@ -170,17 +177,20 @@
   color: white;
 }
 
-.signup {
-  font-size: 1rem;
+.card .signup {
+  font-size: 0.9rem;
   text-align: center;
-  margin-top: 1rem;
 }
 
 .signup a {
-  color: #ffc400;
+  color: var(--blue);
   cursor: pointer;
   text-decoration: none;
   font-weight: 600;
+}
+
+.signup a:hover {
+  text-decoration: underline;
 }
 
 /* VIEWPORT: TABLET (Min-width: 768px) */
@@ -238,11 +248,7 @@
     align-items: flex-start;
   }
 
-  .subText {
-    text-align: left;
-    width: 100%;
-    margin: 0;
-  }
+
 
   .heading h1 {
     font-size: clamp(2.2rem, 4vw, 3.5rem);

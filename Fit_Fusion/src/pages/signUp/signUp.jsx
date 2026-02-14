@@ -5,6 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 import { useUser } from "../../context/userContext.jsx";
 import { toast } from "react-toastify";
 import logo from "../../assets/logo.png";
+import { FiUser, FiMail, FiLock } from "react-icons/fi";
 
 export default function Signup() {
   // State for form inputs
@@ -124,63 +125,55 @@ export default function Signup() {
             </div>
           </div>
 
-          <div className={styles.socialProof}>
-            <span>👥</span>
-            <p>
-              <strong>10k+ Athletes</strong>
-              <br />
-              Joined this month
-            </p>
-          </div>
         </section>
 
         {/* Right Section */}
         <section className={styles.card}>
           <h2>Create Account</h2>
 
-
           <form className={styles.form} onSubmit={handleSubmit}>
             <label>Full Name</label>
-            <input
-              type="text"
-              name="fullName"
-              placeholder="John Doe"
-              value={form.fullName}
-              onChange={handleChange}
-            />
+            <div className={styles.inputGroup}>
+              <FiUser className={styles.inputIcon} />
+              <input
+                type="text"
+                name="fullName"
+                placeholder="Enter your name"
+                value={form.fullName}
+                onChange={handleChange}
+              />
+            </div>
 
             <label>Email Address</label>
-            <input
-              type="email"
-              name="email"
-              placeholder="john@example.com"
-              value={form.email}
-              onChange={handleChange}
-            />
+            <div className={styles.inputGroup}>
+              <FiMail className={styles.inputIcon} />
+              <input
+                type="email"
+                name="email"
+                placeholder="Enter your email"
+                value={form.email}
+                onChange={handleChange}
+              />
+            </div>
 
             <label>Password</label>
-            <input
-              type="password"
-              name="password"
-              placeholder="••••••••"
-              value={form.password}
-              onChange={handleChange}
-            />
-
-            {/* <div className={styles.checkbox}>
-              <input type="checkbox" id="terms" />
-              <label htmlFor="terms">
-                I agree to the <a href="#">Terms of Service</a> and{" "}
-                <a href="#">Privacy Policy</a>
-              </label>
-            </div> */}
+            <div className={styles.inputGroup}>
+              <FiLock className={styles.inputIcon} />
+              <input
+                type="password"
+                name="password"
+                placeholder="Enter your password"
+                value={form.password}
+                onChange={handleChange}
+              />
+            </div>
 
             <button type="submit" disabled={isLoading}>
               {isLoading ? "Creating Account..." : "Create Account"}
             </button>
 
             <p className={styles.signin}>
-              Already have an account? <Link to="/login">Sign in here</Link>
+              Already have an account? <Link to="/login">Sign in</Link>
             </p>
           </form>
         </section>
